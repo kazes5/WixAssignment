@@ -1,7 +1,7 @@
 # Presentation outline: Wix Domains QA, "Can I get this name?"
 
 **Status:** approved by Roy with style and wording changes (piece 6.1). Deck: `presentation/WixDomains_QA.pptx` (piece 6.2).
-**Audience:** the hiring manager and the Wix QA guild. **Length:** 15 slides (title + 13 content + closing), about 15 minutes.
+**Audience:** the hiring manager and the Wix QA guild. **Length:** 16 slides (title + 14 content + closing), about 15–20 minutes.
 **Rules:** every number comes from a file in the repo (sources listed at the end). Detail goes into the "Deep dive →" link and the speaker notes, not onto the slide.
 
 Repo base for deep-dive links: `https://github.com/kazes5/WixAssignment/blob/main/` (written as `…/` below).
@@ -27,99 +27,51 @@ Repo base for deep-dive links: `https://github.com/kazes5/WixAssignment/blob/mai
 
 ---
 
-## Slides
+## Slides (restructured on Roy's request around 6 topics)
 
-Each slide: title, key message (shown under the title), on-slide content, visual, deep-dive link. Speaker notes carry the detail and numbers.
+Every content slide has a small topic label above the title, a key message under it, speaker notes with the detail, and a "Deep dive →" link to its GitHub file.
 
-### 1. Title (black)
-- **Title:** Can I get this name?
-- **Subtitle:** QA for the four Wix Domains doors
-- **On slide:** Roy · QA Engineer home assignment · November 2026
-- **Visual:** a white rounded search pill with `qa-wix-1793698242.com` and a blue "Available" chip (drawn shapes).
-- **Notes:** the four doors, the team of AI agents (architect, QA engineer, automation engineer, designer) managed and reviewed by Roy; repo link.
-- **Link:** https://github.com/kazes5/WixAssignment
+| # | Topic | Title | Key message | Visual | Deep dive |
+|---|---|---|---|---|---|
+| 1 | Title | Can I get this name? | QA for the four Wix Domains doors | Drawn search pill | repo |
+| 2 | 1 · Tested feature and its importance | "Can I get this name?" is the start of every domain sale | Four doors answer it. A wrong answer means a lost sale, or broken trust | 4 door cards, 3 "why it matters" blocks | `Requirements.md` |
+| 3 | 2 · Architecture · overview | All four doors meet in one shared search service | Same service, different login | Diagram redrawn from `ARCHITECTURE.md` §1 | `ARCHITECTURE.md#1-the-big-picture` |
+| 4 | 2 · Architecture · 1 of 4 | Domain storefront: the main answer card | One search fires several calls; each fills a part of the page | Made-of panel, calls → screen table, `evidence/SF-01/` | `ARCHITECTURE.md` §2.1 |
+| 5 | 2 · Architecture · 2 of 4 | Business Name Generator: names first, then domains | Domains are suggested for the chosen name only | Same layout, `evidence/BNG-02/` | `ARCHITECTURE.md` §2.2 |
+| 6 | 2 · Architecture · 3 of 4 | WHOIS lookup: registration data plus things to buy | Who registered it, and alternatives to buy | Same layout, `evidence/WH-01/` | `ARCHITECTURE.md` §2.3 |
+| 7 | 2 · Architecture · 4 of 4 | Public API: the same answer, for developers | Two endpoints, an API key, a thinner view | Same layout, response excerpt from `evidence/API-01/free-name.json` | `ARCHITECTURE.md` §2.4 |
+| 8 | 3 · Manual tests | Priorities follow customer impact, in one format | P0 protects the answer; every step has proof | P0/P1/P2 bands, format chips, "56 evidence files" | `TEST_PLAN.md#3-priorities-and-why` |
+| 9 | 3 · Manual tests | 43 scenarios in 8 areas: every P0 passed | 23 / 12 / 6 / 2; some things left out on purpose | Totals, stacked bar per area, "left out and why" panel | `TEST_PLAN.md#results-summary` |
+| 10 | 4 · Automated tests | Playwright, kept small: 24 tests in 3 projects | Checks the answer and response shape, never exact prices | Code tree (13 api / 9 web / 2 cross / 2 helpers), assertion depth, API-07 box | `README.md#how-the-code-is-structured` |
+| 11 | 4 · Automated tests | 21 of 43 scenarios automated, all green | Stable checks automated; human judgement and checkout stay manual | 21/43, 24/24 in 44 s, 24/24 fresh clone, 3 green runs; "stayed manual" panel | `README.md#automation-choices` |
+| 12 | 5 · Findings highlight | Two major issues: an open API and a screen-reader gap | Both S2 Major, reproduced, with evidence | Finding 1 JSON excerpt (`evidence/API-07/missing-key.json`); Finding 3 axe results (`evidence/automation/A11Y-04/`) | `FINDINGS.md` Finding 1 |
+| 13 | 5 · Findings highlight | All five findings, rated by customer impact | Severity = how bad; priority = how soon | Table with severity/priority, "12 risks" strip | `FINDINGS.md#summary` |
+| 14 | 6 · Requirements | Every deliverable is in the repo | Each row links to the file that covers it | Traceability table, 10 rows, all ✓ | `Requirements.md` |
+| 15 | 6 · Requirements | The rules were kept, with one honest caveat | No purchase, small API budget, key never committed | Traceability table, 8 rows: 7 ✓, 1 partly (R12 429) | `EXECUTION_PLAN.md` |
+| 16 | Closing | Protect the one answer, everywhere | 5-line quality strategy and "with another week" | Dark slide, numbered strategy | `README.md` |
 
-### 2. Four doors answer one question (Scope)
-- **Key message:** A wrong answer means a lost sale, or a user trying to buy a name they can't get.
-- **On slide:** 4 rounded cards: Domain storefront ("Search a name, see if it's free"), Business Name Generator ("Describe your business, get names and domains"), WHOIS lookup ("See who registered a domain"), Public API ("Developers check names in code"). One line: "Tested on 3 Nov 2026 from Israel, so prices in ₪ are expected."
-- **Link:** …/Requirements.md
+### Requirements traceability (slides 14–15)
 
-### 3. What we tested, and what we left out (Scope)
-- **Key message:** Scope follows customer impact and the assignment rules.
-- **On slide:** two panels.
-  - In: all 4 doors, and whether they agree · functional, UI, accessibility, languages (incl. Hebrew).
-  - Out: buying a domain (rule) · load testing (rule) · all 415 TLDs (the ending, like .com): a sample instead · other countries (no VPN).
-  - Strip: "Not bugs, by design: changing suggestions, local prices, hidden WHOIS owner data, endings Wix doesn't sell." Stat: "~119 API calls, budget under 200".
-- **Link:** …/TEST_PLAN.md#4-deliberately-left-out-and-why
-
-### 4. The web doors and the API share one search service (Architecture)
-- **Key message:** The storefront, WHOIS and the API ask the same service; only the login differs.
-- **On slide:** diagram redrawn from `ARCHITECTURE.md` §1: 4 doors → shared Domain Search service (check availability, suggest domains) → web-only services (prices, TLD list, AI names, WHOIS data) and the domain registry outside Wix; dashed line to the purchase page with "testing stops here". Caption: "Web doors log in with the browser session; the API uses an API key."
-- **Link:** …/ARCHITECTURE.md#1-the-big-picture
-
-### 5. Same engine, so the answer must match everywhere (Architecture)
-- **Key message:** Availability must agree on every door; suggestions may differ.
-- **On slide:** a 5-row ✓/– matrix (availability, suggestions, prices, AI names, owner data × 4 doors) and 3 takeaways: "Availability must agree: P0 test" · "Different suggestions are normal" · "Test what users see, not internal calls".
-- **Link:** …/ARCHITECTURE.md#3-how-the-doors-relate
-
-### 6. Priorities follow customer impact (Structure)
-- **Key message:** P0 protects the answer itself; the rest is ranked by how much it hurts users.
-- **On slide:** three rounded bands: P0 "Free or taken, the same on every door, path to buy" (a wrong answer is a lost sale) · P1 "Input handling, API rules, WHOIS errors, accessibility" (misleads or blocks users) · P2 "Layout, loading, wording, other languages" (hurts trust, rarely blocks).
-- **Link:** …/TEST_PLAN.md#3-priorities-and-why
-
-### 7. Every step has a result and proof (Structure)
-- **Key message:** One format for all 43 scenarios; results written only after running the step.
-- **On slide:** the format as a row of chips (Scope → Scenario → Step → Expected → Actual → Evidence → Pass/Fail); the real SF-01 step as a small table; the SF-01 screenshot; stat "56 evidence files, time-stamped".
-- **Visual:** `evidence/SF-01/free-name-result.jpg` (cropped to the result card).
-- **Link:** …/TEST_PLAN.md#6-scenarios-and-results
-
-### 8. Automate the stable checks, keep judgement manual (Structure)
-- **Key message:** 24 Playwright tests cover 21 of 43 scenarios; the rest need a human or would enter checkout.
-- **On slide:** two panels: Automated (API answers and rules · storefront answers · API vs storefront agree · accessibility scan) and Manual (buying flow · WHOIS · Name Generator · screen reader and Hebrew display), plus the code tree and `npm test`.
-- **Links:** …/README.md#automation-choices and https://github.com/kazes5/WixAssignment/tree/main/tests
-
-### 9. The core answer works: every P0 scenario passed (Coverage)
-- **Key message:** 43 scenarios: 23 pass, 12 pass with a note, 6 fail, 2 partial.
-- **On slide:** big totals and a native stacked bar chart per area (8 areas).
-- **Link:** …/TEST_PLAN.md#results-summary
-
-### 10. One command, 24 tests, all green (Coverage)
-- **Key message:** The suite runs in about 45 seconds and keeps the known API bug visible on purpose.
-- **On slide:** stats (24/24 passed · 44 s · web tests green 3 runs in a row · 24/24 from a fresh clone) and a terminal excerpt from `run-summary.txt`.
-- **Link:** …/evidence/automation/run-summary.txt
-
-### 11. Five real findings, rated by customer impact (Coverage)
-- **Key message:** Each one reproduced at least twice and checked against "Domain basics".
-- **On slide:** table with plain titles and severity / priority pills:
-  1. The API answers without an API key · S2 Major · P1 High
-  2. WHOIS blames your internet for a typo · S3 Moderate · P2 Medium
-  3. Results page is hard to use with a screen reader · S2 Major · P2 Medium
-  4. Hebrew name shown in encoded form (xn--…) · S3 Moderate · P3 Low
-  5. Says "fewer than 63 characters", but 63 works · S4 Minor · P3 Low
-  - Caption: "Severity = how bad it is. Priority = how soon to fix it."
-- **Link:** …/FINDINGS.md#summary
-
-### 12. Findings 1 and 2 up close (Coverage)
-- **Key message:** The API ignores its own key rule, and WHOIS blames the user for a typo.
-- **On slide:** left, a code card from `evidence/API-07/missing-key.json` (no auth headers → status 200, full answer) and "7 of 7 tries"; right, the WHOIS screenshot and "`my_bakery!.com` → 'There is a connection issue'".
-- **Visual:** `evidence/WH-03/invalid-input-from-landing-page.jpg` (cropped).
-- **Link:** …/FINDINGS.md#finding-1-the-public-domain-search-api-works-without-any-api-key
-
-### 13. Findings 3 to 5: the results page is where it breaks (Coverage)
-- **Key message:** The page where users decide to buy has the accessibility, Hebrew and wording issues.
-- **On slide:** three columns: (3) screen-reader gaps, confirmed by an automated axe scan; (4) punycode (the encoded xn-- form) instead of the Hebrew name; (5) the "fewer than 63" message.
-- **Visuals:** `evidence/I18N-02/hebrew-idn-punycode-in-main-card.jpg`, `evidence/automation/UI-04/70-chars-length-message.png` (both cropped).
-- **Link:** …/FINDINGS.md#finding-3-the-results-page-isnt-usable-with-a-screen-reader
-
-### 14. Twelve risks noted, not called bugs (Coverage)
-- **Key message:** Some things look wrong but are expected, a product choice, or not proven yet.
-- **On slide:** 4 highlights (brand-name suggestions like `googlebranding.com` · struck-through ₪21.47 vs ₪90.19 renewal · "Rise" for a bakery gets finance domains · busy price service shows "Available now!" with no price) and the BNG-02 screenshot.
-- **Visual:** `evidence/BNG-02/rise-unrelated-domains.jpg` (cropped).
-- **Link:** …/FINDINGS.md#risks-and-observations-not-reported-as-bugs
-
-### 15. Protect the one answer, everywhere (closing, black)
-- **On slide:** quality strategy in 5 short lines (from README) and 3 "with another week" items (CI on every PR and nightly · run from 3–4 countries · simulate failures instead of load).
-- **Link:** …/README.md#quality-strategy-for-wix-domains-5-lines
+| Requirement | Status | Where |
+|---|---|---|
+| Architecture: parts, network calls, what each drives on screen | ✅ | `ARCHITECTURE.md` §2 |
+| How the doors relate to each other and to the API | ✅ | `ARCHITECTURE.md` §3 |
+| Diagram (Mermaid) | ✅ | `ARCHITECTURE.md` §1 |
+| Test plan in the required format, run by hand | ✅ | `TEST_PLAN.md` §6 |
+| What was prioritised, what was left out, and why | ✅ | `TEST_PLAN.md` §3–4 |
+| Up to 5 findings with evidence, severity and priority | ✅ | `FINDINGS.md` |
+| Playwright covering the public API and a web door | ✅ | `tests/` |
+| One command, documented in README | ✅ | `README.md` (npm test) |
+| README: automation choices, another week, 5-line strategy | ✅ | `README.md` |
+| AI_LOG: tools, prompts, AI errors, changes, what stayed human | ✅ | `AI_LOG.md` |
+| Never complete a purchase | ✅ | `TEST_PLAN.md` SF-03 |
+| No load testing; a few hundred API calls (~119) | ✅ | `EXECUTION_PLAN.md` budget |
+| No brute force or scraping | ⚠️ | `FINDINGS.md` R12: one 429 from our own page loads; fixed with 1 worker |
+| Public pages and own account only | ✅ | `TEST_PLAN.md` §2 |
+| API key never committed, logged or in evidence | ✅ | `EXECUTION_PLAN.md` 5.4 |
+| Real commit history, not squashed | ✅ | GitHub commit history |
+| Agent configuration committed | ✅ | `Agents.md`, `.claude/settings.json` |
+| Installed tools used (Wix plugin) | ✅ | `AI_LOG.md` tools |
 
 ---
 
@@ -127,14 +79,12 @@ Each slide: title, key message (shown under the title), on-slide content, visual
 
 | Slide | File | Shows |
 |---|---|---|
-| 7 | `evidence/SF-01/free-name-result.jpg` | SF-01: "Exact Match · Available now!" with price and "Make It Yours" |
-| 12 | `evidence/WH-03/invalid-input-from-landing-page.jpg` | Finding 2: "There is a connection issue" |
+| 4 | `evidence/SF-01/free-name-result.jpg` (cropped) | Storefront main card: "Exact Match · Available now!", price, "Make It Yours" |
+| 5 | `evidence/BNG-02/rise-unrelated-domains.jpg` (cropped) | "Rise" → finance-themed domains |
+| 6 | `evidence/WH-01/registered-wikipedia-via-url-input.jpg` (cropped) | WHOIS domain information for wikipedia.org |
+| 7 | `evidence/API-01/free-name.json` (excerpt as text) | API response shape, called with the key |
 | 12 | `evidence/API-07/missing-key.json` (excerpt as text) | Finding 1: no auth headers → 200 |
-| 13 | `evidence/I18N-02/hebrew-idn-punycode-in-main-card.jpg` | Finding 4: punycode main card, Hebrew list |
-| 13 | `evidence/automation/UI-04/70-chars-length-message.png` | Finding 5: "fewer than 63 characters" |
-| 13 | `evidence/automation/A11Y-04/axe-storefront-results.json` (summarised) | Finding 3: axe results |
-| 10 | `evidence/automation/run-summary.txt` (excerpt as text) | 24 passed in 44.0 s |
-| 14 | `evidence/BNG-02/rise-unrelated-domains.jpg` | R4: "Rise" → finance-themed domains |
+| 12 | `evidence/automation/A11Y-04/axe-storefront-results.json` (summarised) | Finding 3: axe results |
 
 None of these files contain the API key or account ID (`evidence/README.md`, `evidence/automation/README.md`: scanned, 0 hits).
 
@@ -143,7 +93,7 @@ None of these files contain the API key or account ID (`evidence/README.md`, `ev
 | Number | Source |
 |---|---|
 | 43 scenarios · 23 / 12 / 6 / 2 and the per-area rows | `TEST_PLAN.md` Results summary |
-| 24 tests, 24 passed in 44.0 s; 13 api / 9 web / 2 cross | `evidence/automation/run-summary.txt` |
+| 24 tests, 24 passed in 44.0 s; 13 api / 9 web / 2 cross; 3 projects, 1 worker, 1 retry | `evidence/automation/run-summary.txt` |
 | 21 of 43 scenarios automated (fully or in part) | `README.md` Automation choices |
 | 19 API-key calls per full run; ~119 total, target under 200 | `README.md`; `EXECUTION_PLAN.md` API call budget |
 | 24/24 in 46 s from a clean clone; web green 3 runs in a row | `EXECUTION_PLAN.md` 5.4 and 4.3 |
