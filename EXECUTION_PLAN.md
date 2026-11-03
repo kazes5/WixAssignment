@@ -186,7 +186,7 @@ Owner: **Automation Engineer**. Tool: Playwright (TypeScript).
 | 4.3 | Web door tests | `tests/web/storefront.spec.ts` for SF-01 and SF-02 (plus SF-04 if stable) | Pass reliably 3 runs in a row | ✅ | SF-01, 02, 04, 05, 07, UI-01, UI-04 + A11Y-04 axe (report only); 9/9 passed 3 runs in a row (10:34–10:38 UTC, 1 worker, no retries) after an earlier 429 rate-limit failure caused by our own volume |
 | 4.4 | Cross-door test | X-01: API vs storefront for one free and one taken name | Passes | ✅ | `tests/cross/x01-api-vs-storefront.spec.ts`: free and taken name agree across API and storefront; 2 API calls per run |
 | 4.5 | Evidence | HTML report, screenshots and traces on failure | Report opens after a run | ✅ | `evidence/automation/` (run summary, axe JSON, Finding 5 screenshots, observations); report and evidence scanned: no key or account ID |
-| 4.6 | Link results back | Automated scenario IDs marked in `TEST_PLAN.md` | Each automated scenario says so | ⬜ | Commit: `test: automated API and storefront tests` |
+| 4.6 | Link results back | Automated scenario IDs marked in `TEST_PLAN.md` | Each automated scenario says so | ✅ | "Automated:" marker on 12 scenarios, §8 column, A11Y-04 result filled from the real run (❌, summary now 6 fail / 2 partial); FINDINGS: Finding 1 7th repro, axe and 63-char evidence, R11, R12 |
 | 4.7 | README: how to run and why | Setup, single command, report location, automation choices | Someone new can run it from the README | ⬜ | |
 
 ---

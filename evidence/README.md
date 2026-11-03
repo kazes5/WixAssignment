@@ -6,6 +6,7 @@ All evidence for `TEST_PLAN.md` and `FINDINGS.md`, **in the order it was capture
 - **Times** are UTC, with Israel time (UTC+2) next to them. API times are exact (written by the call script). Screenshot times are the start of the browser action batch that captured them (within ~30 s).
 - **API JSON files** contain the request URL, the auth mode used, HTTP status and the full response. The API key is never stored.
 - Rows marked **FINDING n** are the evidence behind `FINDINGS.md`.
+- Evidence from the Phase 4 Playwright automation is indexed separately in [`automation/README.md`](automation/README.md).
 
 | # | Time UTC | Israel | Door | Type | Scenario | File | What it shows |
 |---|---|---|---|---|---|---|---|

@@ -13,9 +13,9 @@
 | Functional: Name Generator | 3 | 1 | 2 | 0 | 0 |
 | Functional: cross-door | 2 | 2 | 0 | 0 | 0 |
 | UI | 4 | 1 | 2 | 1 | 0 |
-| Accessibility | 4 | 2 | 0 | 1 | 1 |
+| Accessibility | 4 | 2 | 0 | 2 | 0 |
 | Multi-language / RTL | 6 | 2 | 3 | 1 | 0 |
-| **Total** | **43** | **23** | **12** | **5** | **3** |
+| **Total** | **43** | **23** | **12** | **6** | **2** |
 
 **The core answer works.** Every P0 scenario passed: free names show as available, taken names as taken, and the storefront, WHOIS, Name Generator and API agree with each other.
 
@@ -28,10 +28,13 @@
 | A11Y-03 | Results page: no `lang`, unlabelled search box, unnamed icon buttons, no `main` landmark, no live region for results | Storefront / WHOIS results |
 | I18N-02 | A Hebrew domain (`קפהטעים.com`) is shown as **punycode** (`xn--8dbidqxju.com`) in the main result card | Storefront / WHOIS |
 | UI-04 | Error says domains must be "fewer than 63 characters", but exactly 63 is accepted | Storefront |
+| A11Y-04 | Automated axe scan (Phase 4) confirms A11Y-03 on the results page: unnamed buttons, unlabelled search box, no `lang` | Storefront results |
 
 **Main observations (not bugs, but worth raising):** no Hebrew/Arabic version of the domain pages; Name Generator domains follow the short name, not the business; taken famous names produce trademark-like suggestions (`googleassistantapp.com`); slow alternatives for taken names; struck-through price vs renewal price clarity.
 
 **API budget used in this phase:** ~32 calls with the API key, plus normal page browsing. Total so far ~45 of a target under 200.
+
+**Automation (Phase 4):** 24 Playwright tests cover API-01 to API-11, SF-01, SF-02, SF-04, SF-05, SF-07, UI-01, UI-04, A11Y-04 and X-01 (API vs storefront). Latest full run: 24/24 passed, with API-07 kept as an expected failure for Finding 1. Each automated scenario below says **Automated:** with its test file. Details: [§8](#8-automation-candidates-for-phase-4), [`README.md`](README.md#automation-choices), evidence in [`evidence/automation/`](evidence/automation/README.md).
 
 ---
 
@@ -102,7 +105,7 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 
 ### 6.1 Functional: Domain storefront
 
-**Test scope:** Storefront · **Scenario SF-01 (P0):** A user searches for a name that is free.
+**Test scope:** Storefront · **Scenario SF-01 (P0):** A user searches for a name that is free. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -110,7 +113,7 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 | 2 | Read the main card | "Available", the domain, a price and a buy button | "Exact Match · Available now!", `qa-wix-1793698242.com`, ~~₪21.47/yr~~ ₪0.00/yr "Free for 1 year", "Make It Yours" | same | ✅ |
 | 3 | Read the alternatives | Same name in other sold TLDs, each with price and "Get It" | `.net`, `.co.il`, `.org`, `.co`… each with price and "Get It" | same | ✅ |
 
-**Test scope:** Storefront · **Scenario SF-02 (P0):** A user searches for a name that is taken.
+**Test scope:** Storefront · **Scenario SF-02 (P0):** A user searches for a name that is taken. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -125,14 +128,14 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 |---|---|---|---|---|---|
 | 1 | On the free-name results, click "Make It Yours" | Goes toward purchase with the same domain | Opened `manage.wix.com/premium-domains/desktop-split-page?domainName=qa-wix-1793700000.com`, page title "Domain Purchase". **Stopped there.** | Observed during the Phase 1 capture the same day; see [ARCHITECTURE.md §2.1](ARCHITECTURE.md). The browser extension has no access to manage.wix.com, so there's no screenshot | ✅ |
 
-**Test scope:** Storefront · **Scenario SF-04 (P1):** A user types a name without a TLD.
+**Test scope:** Storefront · **Scenario SF-04 (P1):** A user types a name without a TLD. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) (step 1)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
 | 1 | Search `qa-wix-1793700000` | Results for one or more TLDs | "Best Match" `.com` and "Great Alternative" `.co.il`, plus a list | [ARCHITECTURE.md §2.1](ARCHITECTURE.md) (flow by input type) | ✅ |
 | 2 | Search Hebrew keyword `מאפייה` (no TLD) | Results for one or more TLDs | `מאפייה.info`, `מאפייה.org`, `.ai`, `.net` | [screenshot](evidence/I18N-03/hebrew-keyword-search.jpg) | ✅ |
 
-**Test scope:** Storefront · **Scenario SF-05 (P1):** A user searches a TLD that Wix doesn't sell.
+**Test scope:** Storefront · **Scenario SF-05 (P1):** A user searches a TLD that Wix doesn't sell. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -147,7 +150,7 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 
 > **Observation:** the storefront rejects a URL with a misleading character message, while WHOIS (same company, same session) accepts URLs. Users recover via the Best Match card.
 
-**Test scope:** Storefront · **Scenario SF-07 (P1):** Invalid input.
+**Test scope:** Storefront · **Scenario SF-07 (P1):** Invalid input. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) (steps 1 and 2)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -155,7 +158,7 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 | 2 | Search 70×`a`.com | Clear length message | "Domains should contain fewer than 63 characters. Explore shorter options below." Suggestions are 63-character labels (valid) | [screenshot](evidence/SF-07/too-long-70-chars.jpg) | ✅ (wording: see UI-04) |
 | 3 | Click "Search Domains" with an empty box | A hint or nothing harmful | Nothing happens; focus goes to the box; no message | [screenshot](evidence/SF-07/empty-search-no-message.jpg) | ⚠️ |
 
-**Test scope:** Storefront and API · **Scenario SF-08 (P1):** A premium domain.
+**Test scope:** Storefront and API · **Scenario SF-08 (P1):** A premium domain. · **Automated:** partly, the premium flag via API-08 in [`tests/api/availability.spec.ts`](tests/api/availability.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -168,7 +171,7 @@ Status key: ✅ Pass · ⚠️ Pass with observation · ❌ Fail · ⏸️ Parti
 
 All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorization` and `wix-account-id`, unless noted.
 
-**Test scope:** API · **Scenarios API-01 to API-03 (P0):** The core answers.
+**Test scope:** API · **Scenarios API-01 to API-03 (P0):** The core answers. · **Automated:** [`tests/api/availability.spec.ts`](tests/api/availability.spec.ts), [`tests/api/suggestions.spec.ts`](tests/api/suggestions.spec.ts)
 
 | ID | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -176,7 +179,7 @@ All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorizatio
 | API-02 | `check-domain-availability?domain=google.com` | 200, `available:false` | 200, `available:false` | [json](evidence/API-02/taken-name.json) | ✅ |
 | API-03 | `suggest-domains?query=sourdough bakery&paging.limit=10` | 200, non-empty list of valid domains | 200, 10 suggestions (`sourdoughbakery.co.il`, `sourdoughbakeryco.com`…) | [json](evidence/API-03/suggest-bakery.json) | ✅ |
 
-**Test scope:** API · **Scenarios API-04 to API-12 (P1):** Validation, auth, shape, variations.
+**Test scope:** API · **Scenarios API-04 to API-12 (P1):** Validation, auth, shape, variations. · **Automated:** API-04 to API-11 in [`tests/api/`](tests/api/) (API-07 as an expected failure for Finding 1); API-12 stays manual
 
 | ID | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -253,7 +256,7 @@ All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorizatio
 
 ### 6.5 Functional: Cross-door consistency
 
-**Test scope:** All doors · **Scenario X-01 (P0):** The same name gives the same answer everywhere.
+**Test scope:** All doors · **Scenario X-01 (P0):** The same name gives the same answer everywhere. · **Automated:** API vs storefront (steps 1 and 2, WHOIS part manual) in [`tests/cross/x01-api-vs-storefront.spec.ts`](tests/cross/x01-api-vs-storefront.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -270,7 +273,7 @@ All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorizatio
 
 ### 6.6 UI
 
-**Test scope:** Storefront results · **Scenario UI-01 (P2):** Layout at a narrow (mobile-like) width.
+**Test scope:** Storefront results · **Scenario UI-01 (P2):** Layout at a narrow (mobile-like) width. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) at a real 390 px phone viewport
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -292,7 +295,7 @@ All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorizatio
 
 > **Observation:** what the ⓘ tooltip says wasn't checked. Worth a quick product question on whether the struck-through price is meant to be the regular price.
 
-**Test scope:** Storefront · **Scenario UI-04 (P2):** Validation wording matches the rule.
+**Test scope:** Storefront · **Scenario UI-04 (P2):** Validation wording matches the rule. · **Automated:** [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) (70 rejected, 63 accepted; wording itself not asserted)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
@@ -330,11 +333,12 @@ All calls: `GET https://www.wixapis.com/domain-search/v2/...` with `Authorizatio
 
 > The landing page is in good shape (A11Y-01), but the results page, where the answer and the buy buttons are, isn't. Candidate finding #3.
 
-**Test scope:** All web doors · **Scenario A11Y-04 (P1):** Automated accessibility scan (axe-core).
+**Test scope:** All web doors · **Scenario A11Y-04 (P1):** Automated accessibility scan (axe-core). · **Automated:** [`tests/web/a11y.spec.ts`](tests/web/a11y.spec.ts)
 
 | # | Test step | Expected result | Actual result | Evidence | Pass/Fail |
 |---|---|---|---|---|---|
 | 1 | Run axe-core on landing and results pages | No serious or critical violations | **Not run:** loading axe from a CDN into the live page was blocked by this environment's security policy | — | ⏸️ Moved to Phase 4 (`@axe-core/playwright`) |
+| 2 | **Phase 4, automated:** run `@axe-core/playwright` (WCAG 2.0/2.1 A and AA) on the storefront landing and results pages, logged out | No serious or critical violations | **Results page:** `button-name` (critical, 3 buttons), `label` (critical, search box), `html-has-lang` (serious). Same gaps as A11Y-03. **Landing page:** `color-contrast` (serious) on "Search Domains", checked by hand: the computed button colour is `rgb(47, 93, 255)`, about 5.1:1 against white, which passes; axe mis-estimated the background (false positive, not reported) | [axe results](evidence/automation/A11Y-04/) | ❌ (results page) |
 
 ### 6.8 Multi-language / RTL
 
@@ -398,10 +402,12 @@ Risks and observations: trademark-style suggestions (SF-02), struck-through vs r
 
 ## 8. Automation candidates for Phase 4
 
-| Scenario | Why automate |
-|---|---|
-| API-01 to API-07, API-09 to API-11 | Fast, stable, cheap; API-07 guards the auth behaviour |
-| SF-01, SF-02, SF-05, SF-07 | The core UI answers; assert on visible text, not prices |
-| X-01 | API vs storefront agreement on one free and one taken name |
-| A11Y-03 / A11Y-04 | axe scan with `@axe-core/playwright` on landing and results pages |
-| UI-01 | Phone viewport (390 px) via device emulation |
+| Scenario | Why automate | Automated in Phase 4 |
+|---|---|---|
+| API-01 to API-07, API-09 to API-11 | Fast, stable, cheap; API-07 guards the auth behaviour | ✅ All, in [`tests/api/`](tests/api/). API-07 is marked as an expected failure (Finding 1). API-08 (premium flag) added |
+| SF-01, SF-02, SF-05, SF-07 | The core UI answers; assert on visible text, not prices | ✅ All, plus SF-04 and UI-04, in [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) |
+| X-01 | API vs storefront agreement on one free and one taken name | ✅ [`tests/cross/x01-api-vs-storefront.spec.ts`](tests/cross/x01-api-vs-storefront.spec.ts) |
+| A11Y-03 / A11Y-04 | axe scan with `@axe-core/playwright` on landing and results pages | ✅ A11Y-04 in [`tests/web/a11y.spec.ts`](tests/web/a11y.spec.ts), reported, not enforced. A11Y-03 stays a manual review |
+| UI-01 | Phone viewport (390 px) via device emulation | ✅ [`tests/web/storefront.spec.ts`](tests/web/storefront.spec.ts) |
+
+How to run them, what was left manual and why: [`README.md`](README.md#automation-choices).
