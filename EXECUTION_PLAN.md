@@ -22,8 +22,8 @@ finished and committed before the later phases start.
 | Phase | Name | Owner | MVP? | Status |
 |---|---|---|---|---|
 | 0 | Setup | Manager | Prerequisite | ✅ Done |
-| 1 | Architecture | System Architect | Prerequisite for the MVP | 🟦 Awaiting review (PR from `phase-1-architecture`) |
-| 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ⬜ |
+| 1 | Architecture | System Architect | Prerequisite for the MVP | ✅ Done (PR #1 merged) |
+| 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | 🟦 Awaiting review (PR from `phase-2-test-plan`) |
 | 3 | Findings | Senior QA Engineer | No | ⬜ |
 | 4 | Automation | Automation Engineer | No | ⬜ |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ⬜ |
@@ -50,10 +50,10 @@ Limit: a few hundred in total. Target: **under 200**.
 |---|---|---|---|
 | 0 (connectivity checks) | 3 | 3 | 1 availability call with the key, 2 Wix plugin calls |
 | 1 (architecture recon) | ~5 | ~10 | No API-key calls. Normal page browsing on the 3 doors, plus ~10 extra in-page requests to capture response shapes (2 availability, 2 suggestions, 2 user-domains, prices, TLD list, WHOIS) |
-| 2 (manual execution) | ~40 | | |
+| 2 (manual execution) | ~40 | ~32 | API-key calls via `curl` (evidence in `evidence/API-*`, `evidence/X-02`), plus normal page browsing |
 | 3 (findings reproduction) | ~20 | | |
 | 4 (automation development and runs) | ~100 | | ~10 calls per full run, ~10 runs |
-| **Total** | **~170** | **~13** | |
+| **Total** | **~170** | **~45** | |
 
 ---
 
@@ -87,7 +87,7 @@ screen, location-dependent behaviour, and stable selectors.
 | 1.5 | How the doors relate | Section: shared services, differences, relation to the public API | Clear comparison | ✅ | |
 | 1.6 | Diagram | Mermaid diagram: doors → services → shared backends | Renders on GitHub | ✅ | |
 | 1.7 | Testing notes | Section: what each call means for testing (risky areas, what to assert on, selectors) | Section exists | ✅ | 6 risks and observations handed to Phase 2 |
-| 1.8 | Architecture review | Human review | User approves | 🟦 | PR open for review |
+| 1.8 | Architecture review | Human review | User approves | ✅ | PR #1 merged |
 
 ---
 
@@ -101,15 +101,17 @@ Built on `ARCHITECTURE.md` from Phase 1. Starts only after Phase 1 is approved.
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 2.1 | Plan skeleton | `TEST_PLAN.md`: Scope, link to `ARCHITECTURE.md`, Approach, Priorities and why, Out of scope and why, Test data, Environments | All sections filled | ⬜ | Commit: `docs: test plan skeleton` |
-| 2.2 | Write P0 scenarios | Scenario tables with steps and expected results | All P0 scenarios below written; actual result and Pass/Fail still empty | ⬜ | |
-| 2.3 | Execute P0 scenarios | Actual result, evidence, Pass/Fail filled in | Every P0 step run and recorded with evidence | ⬜ | Commit: `test: P0 scenarios executed` |
-| 2.4 | Write P1 scenarios | Scenario tables | All P1 scenarios below written | ⬜ | |
-| 2.5 | Execute P1 scenarios | Results and evidence | Every P1 step run and recorded | ⬜ | Commit: `test: P1 scenarios executed` |
-| 2.6 | Execution summary | "Results summary" section: pass/fail counts, blocked items, candidate findings | Summary at the top of `TEST_PLAN.md` | ⬜ | Commit: `docs: test execution summary` |
-| 2.7 | MVP review | Human review | User approves the MVP | ⬜ | |
+| 2.1 | Plan skeleton | `TEST_PLAN.md`: Scope, link to `ARCHITECTURE.md`, Approach, Priorities and why, Out of scope and why, Test data, Environments | All sections filled | ✅ | Commit: `docs: test plan skeleton` |
+| 2.2 | Write P0 scenarios | Scenario tables with steps and expected results | All P0 scenarios below written; actual result and Pass/Fail still empty | ✅ | |
+| 2.3 | Execute P0 scenarios | Actual result, evidence, Pass/Fail filled in | Every P0 step run and recorded with evidence | ✅ | Commit: `test: P0 scenarios executed` |
+| 2.4 | Write P1 scenarios | Scenario tables | All P1 scenarios below written | ✅ | |
+| 2.5 | Execute P1 scenarios | Results and evidence | Every P1 step run and recorded | ✅ | Commit: `test: P1 scenarios executed` |
+| 2.6 | Execution summary | "Results summary" section: pass/fail counts, blocked items, candidate findings | Summary at the top of `TEST_PLAN.md` | ✅ | 43 scenarios: 23 pass, 12 pass with observation, 5 fail, 3 partial |
+| 2.7 | MVP review | Human review | User approves the MVP | 🟦 | PR open for review |
 
 ### Scenario catalogue
+
+> Planning list. The executed scenarios (43, including **UI, Accessibility and Multi-language / RTL** added on request) and their results live in [`TEST_PLAN.md`](TEST_PLAN.md).
 
 Format for each scenario in `TEST_PLAN.md`:
 
@@ -121,41 +123,41 @@ Format for each scenario in `TEST_PLAN.md`:
 
 | ID | Door | Scenario | Status |
 |---|---|---|---|
-| SF-01 | Storefront | Search a free name (`qa-wix-<ts>.com`) → shown as available with a price and a buy action | ⬜ |
-| SF-02 | Storefront | Search a taken name (`google.com`) → shown as taken, alternatives offered | ⬜ |
-| API-01 | API | Check availability of a free name → `available: true` | ⬜ |
-| API-02 | API | Check availability of a taken name → `available: false` | ⬜ |
-| API-03 | API | Suggest domains for a query → list returned; spot-check one suggestion is available | ⬜ |
-| WH-01 | WHOIS | Look up a registered domain → registration data shown (redacted fields are fine) | ⬜ |
-| WH-02 | WHOIS | Look up an unregistered name → clear "not registered" message | ⬜ |
-| BNG-01 | Name Generator | Enter a business description → names generated; domain availability shown | ⬜ |
-| X-01 | Cross-door | Same free and taken names: storefront, API and WHOIS give consistent answers | ⬜ |
-| X-02 | Cross-door | A name marked available in the Name Generator is also available in the storefront | ⬜ |
-| SF-03 | Storefront | Available name → "Get it" leads toward checkout with the right domain and price. **Stop before paying** | ⬜ |
+| SF-01 | Storefront | Search a free name (`qa-wix-<ts>.com`) → shown as available with a price and a buy action | see `TEST_PLAN.md` |
+| SF-02 | Storefront | Search a taken name (`google.com`) → shown as taken, alternatives offered | see `TEST_PLAN.md` |
+| API-01 | API | Check availability of a free name → `available: true` | see `TEST_PLAN.md` |
+| API-02 | API | Check availability of a taken name → `available: false` | see `TEST_PLAN.md` |
+| API-03 | API | Suggest domains for a query → list returned; spot-check one suggestion is available | see `TEST_PLAN.md` |
+| WH-01 | WHOIS | Look up a registered domain → registration data shown (redacted fields are fine) | see `TEST_PLAN.md` |
+| WH-02 | WHOIS | Look up an unregistered name → clear "not registered" message | see `TEST_PLAN.md` |
+| BNG-01 | Name Generator | Enter a business description → names generated; domain availability shown | see `TEST_PLAN.md` |
+| X-01 | Cross-door | Same free and taken names: storefront, API and WHOIS give consistent answers | see `TEST_PLAN.md` |
+| X-02 | Cross-door | A name marked available in the Name Generator is also available in the storefront | see `TEST_PLAN.md` |
+| SF-03 | Storefront | Available name → "Get it" leads toward checkout with the right domain and price. **Stop before paying** | see `TEST_PLAN.md` |
 
 **P1: common user paths and inputs. Wrong handling misleads or blocks the user.**
 
 | ID | Door | Scenario | Status |
 |---|---|---|---|
-| SF-04 | Storefront | Name without a TLD (`qa-wix-<ts>`) → results for one or more TLDs | ⬜ |
-| SF-05 | Storefront | TLD Wix doesn't sell → "not offered", not "taken", no error | ⬜ |
-| SF-06 | Storefront | Input variations: uppercase, spaces, `www.`, full URL → same answer or clear message | ⬜ |
-| SF-07 | Storefront | Invalid input: empty, special characters, too long (>63), leading hyphen → clear validation | ⬜ |
-| SF-08 | Storefront | Premium domain → higher price shown, first-year vs renewal pricing explained | ⬜ |
-| API-04 | API | Domain without a TLD → clear validation error | ⬜ |
-| API-05 | API | Invalid domain (special characters, >63 chars) → 400 with a helpful message | ⬜ |
-| API-06 | API | TLD filter with a dot (`.com`) vs without (`com`) → documented behaviour | ⬜ |
-| API-07 | API | Missing or invalid API key → 401/403, no data returned | ⬜ |
-| API-08 | API | Premium domain → `premium: true` and a valid `premiumType` | ⬜ |
-| API-09 | API | Response shape matches the docs (fields and types) | ⬜ |
-| WH-03 | WHOIS | Invalid input (no TLD, special characters) → clear message | ⬜ |
-| BNG-02 | Name Generator | Generated names → domain link opens the storefront with the right name | ⬜ |
-| X-03 | Cross-door | Suggestions differ between doors → documented as an observation, not a bug | ⬜ |
+| SF-04 | Storefront | Name without a TLD (`qa-wix-<ts>`) → results for one or more TLDs | see `TEST_PLAN.md` |
+| SF-05 | Storefront | TLD Wix doesn't sell → "not offered", not "taken", no error | see `TEST_PLAN.md` |
+| SF-06 | Storefront | Input variations: uppercase, spaces, `www.`, full URL → same answer or clear message | see `TEST_PLAN.md` |
+| SF-07 | Storefront | Invalid input: empty, special characters, too long (>63), leading hyphen → clear validation | see `TEST_PLAN.md` |
+| SF-08 | Storefront | Premium domain → higher price shown, first-year vs renewal pricing explained | see `TEST_PLAN.md` |
+| API-04 | API | Domain without a TLD → clear validation error | see `TEST_PLAN.md` |
+| API-05 | API | Invalid domain (special characters, >63 chars) → 400 with a helpful message | see `TEST_PLAN.md` |
+| API-06 | API | TLD filter with a dot (`.com`) vs without (`com`) → documented behaviour | see `TEST_PLAN.md` |
+| API-07 | API | Missing or invalid API key → 401/403, no data returned | see `TEST_PLAN.md` |
+| API-08 | API | Premium domain → `premium: true` and a valid `premiumType` | see `TEST_PLAN.md` |
+| API-09 | API | Response shape matches the docs (fields and types) | see `TEST_PLAN.md` |
+| WH-03 | WHOIS | Invalid input (no TLD, special characters) → clear message | see `TEST_PLAN.md` |
+| BNG-02 | Name Generator | Generated names → domain link opens the storefront with the right name | see `TEST_PLAN.md` |
+| X-03 | Cross-door | Suggestions differ between doors → documented as an observation, not a bug | see `TEST_PLAN.md` |
 
 **Deliberately out of scope** (explained in `TEST_PLAN.md`): completing a purchase; load,
 performance and brute-force testing; every TLD; testing from multiple real countries (noted as a
-risk); accessibility and visual testing beyond basic checks; the logged-in dashboard beyond the
-user's own account.
+risk); visual regression; screen-reader end-to-end testing; the logged-in dashboard beyond the
+user's own account. (Accessibility and multi-language/RTL were added to scope on request.)
 
 ---
 
@@ -217,5 +219,6 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 | Date | Change |
 |---|---|
 | 2026-11-03 | Plan created. Phase 0 partly done (key stored, repo connected). |
+| 2026-11-03 | Phase 2 done: `TEST_PLAN.md` with 43 executed scenarios (functional, UI, accessibility, multi-language/RTL) and evidence; PR opened. |
 | 2026-11-03 | Phase 1 done: `ARCHITECTURE.md` written on branch `phase-1-architecture`, PR opened for review. |
 | 2026-11-03 | Architecture moved to Phase 1 (before the test plan). Presentation defined as a .pptx with deep-dive links. Git author set. |

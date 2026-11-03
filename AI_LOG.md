@@ -10,6 +10,7 @@ Updated throughout the work. Newest entries go at the bottom of each section.
 | **Claude Code** (CLI, model Claude Opus 5.5) | Main assistant: reading requirements, planning, writing docs, running shell commands, and acting as the manager of the agent team |
 | **Wix plugin for Claude Code** (Wix MCP) | Searching the Wix REST docs for the Domain Search API, listing my own Wix site, a domain-suggestion check |
 | **Claude in Chrome** (browser extension) | Network inspection of the 3 web doors for `ARCHITECTURE.md` (Phase 1) |
+| **Playwright browser plugin** (MCP) | Checking the German site and `he.wix.com`, which the Chrome extension had no permission for (Phase 2) |
 | **Playwright** (planned) | Test automation (Phase 4) |
 
 Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
@@ -26,6 +27,7 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "review the Agents.md file once again … create a detailed execution plan … the MVP is the test plan and it's execution … connect to the repo" | Second review of `Agents.md`, `EXECUTION_PLAN.md` with phases, pieces, statuses and an API budget, and the local repo linked to GitHub. |
 | 2026-11-03 | "add them to Agents.md, exclude #8 … a ppt with the tests scope, the architecture, test structure and coverage with links to deep dive … do the Architecture first" | Additions appended to `Agents.md` (nothing removed), plan reordered so architecture comes before the test plan, presentation defined as a .pptx. |
 | 2026-11-03 | "mark the progress in the EXECUTION_PLAN.md. create a branch for each stage being executed, create a pull request when done. Start Phase 1" | Branch `phase-1-architecture`. The AI used Claude in Chrome to search on the 3 web doors, captured the network calls (with an in-page request hook to see request and response shapes), and wrote `ARCHITECTURE.md` with a Mermaid diagram. |
+| 2026-11-03 | "merged, start Phase 2, please make sure to include UI,Functionality,accessability,Multi Language\\RTL in the test plan." | Branch `phase-2-test-plan`. API scenarios run with `curl` (evidence saved as JSON without the key); web doors tested in Chrome; German site and language checks with the Playwright browser; `TEST_PLAN.md` with 43 scenarios and results. |
 
 ## Where the AI was wrong, and how it was caught
 
@@ -36,6 +38,9 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | The first execution plan put the full architecture **after** the test plan (with only a short recon before it), which reversed the order in the requirements. | My review of the plan. | Plan reordered: architecture (Phase 1) → test plan and manual execution (Phase 2, MVP). |
 
 | 2026-11-03 | The browser extension's privacy filter hid query strings and some hostnames in captured requests, so the first network list was incomplete. | Many entries came back as "[BLOCKED]". | The AI added an in-page hook that records only paths, parameter names and response shapes, and doesn't print personal data or tokens. |
+| 2026-11-03 | The AI's first API helper script crashed on the "no auth headers" case (an empty argument list in bash), so the first missing-key test didn't run. | The script printed an "unbound variable" error. | Fixed the script and re-ran; the result (the API answers without a key) was then confirmed 4 ways. |
+| 2026-11-03 | The AI tried to load the axe accessibility scanner from a CDN into the live Wix page. | Blocked by the environment's permission check (running external code). | Not retried. Replaced with read-only DOM checks; the axe scan moves to Phase 4 via the official `@axe-core/playwright` package. |
+| 2026-11-03 | The WHOIS "connection issue" first appeared on a hand-built deep link, which isn't how users search. | The AI re-ran it through the real input box before calling it a bug. | URL input through the box works (pass); invalid characters fail from both entry points (real bug). |
 
 ## What was changed or thrown away
 
