@@ -211,7 +211,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 6.1 | Outline | Sections: test scope → architecture → test structure → coverage | User approves the outline | 🟦 | Outline drafted, awaiting approval (`presentation/OUTLINE.md`, 15 slides) |
+| 6.1 | Outline | Sections: test scope → architecture → test structure → coverage | User approves the outline | ✅ | Outline approved with style and wording changes from Roy |
 | 6.2 | PowerPoint deck | `presentation/WixDomains_QA.pptx` | Each section links to the matching repo file (`ARCHITECTURE.md`, `TEST_PLAN.md`, `FINDINGS.md`, tests, `README.md`) for a deep dive; real results only | ⬜ | |
 | 6.3 | Review | User review | Approved | ⬜ | |
 
