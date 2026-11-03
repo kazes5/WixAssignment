@@ -1,0 +1,19 @@
+{
+  "scenario": "A11Y-03",
+  "page": "https://www.wix.com/domain/result/?q=qa-wix-1793698242.com",
+  "captured_utc": "2026-11-03",
+  "method": "Read-only DOM inspection in the browser (own script, no external code)",
+  "html_lang": "",
+  "main_landmark_count": 0,
+  "headings_in_order": ["H2: Lock in your domain. Start your online journey.", "H1: qa-wix-1793698242.com", "H2: Explore available alternatives"],
+  "search_input": {"type": "text", "placeholder": "", "aria-label": null, "aria-labelledby": null, "label_elements": 0},
+  "unnamed_buttons": [
+    "button[data-hook=module-coreDomainSearch-clearInput] (icon only, no aria-label)",
+    "button[data-hook=module-coreDomainSearch-searchSubmitButton] (icon only, no aria-label)",
+    "button.wds-button (no text, no aria-label)"
+  ],
+  "buy_buttons": "'Make It Yours' / 'Get It' have visible text only; no aria-label naming the domain, so a screen reader hears many identical 'Get It' buttons",
+  "live_regions": [],
+  "keyboard_tab_order_results_page": ["account menu", "Back", "INPUT (no name)", "BUTTON (no name)", "BUTTON (no name)", "Make It Yours", "Get It", "Get It", "Get It", "Get It"],
+  "comparison_landing_page": {"url": "https://www.wix.com/domains", "html_lang": "en", "main_landmark_count": 1, "search_input_aria_label": "Type the domain you want", "imgs_without_alt": 0, "h1_count": 1}
+}
