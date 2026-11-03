@@ -1,0 +1,19 @@
+{
+  "scenario": "API-08",
+  "label": "premium-candidate-4",
+  "timestamp_utc": "2026-11-03T09:32:51Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=bakeries.store",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "bakeries.store",
+      "available": false,
+      "premium": true,
+      "premiumType": "FIRST_YEAR_AND_RENEWAL"
+    }
+  }
+}

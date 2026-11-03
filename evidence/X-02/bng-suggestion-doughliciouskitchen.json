@@ -1,0 +1,19 @@
+{
+  "scenario": "X-02",
+  "label": "bng-suggestion-doughliciouskitchen",
+  "timestamp_utc": "2026-11-03T09:41:35Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=doughliciouskitchen.com",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "doughliciouskitchen.com",
+      "available": true,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}

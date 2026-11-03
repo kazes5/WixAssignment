@@ -1,0 +1,24 @@
+{
+  "scenario": "API-06",
+  "label": "tld-filter-with-dot",
+  "timestamp_utc": "2026-11-03T09:30:50Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=sourdough%20bakery&tlds=.com&paging.limit=5",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 400,
+  "response": {
+    "message": "INVALID_TLD_FORMAT",
+    "details": {
+      "validationError": {
+        "fieldViolations": [
+          {
+            "field": "tlds",
+            "description": "At least one element of the 'tlds' array has an invalid format."
+          }
+        ]
+      }
+    }
+  }
+}

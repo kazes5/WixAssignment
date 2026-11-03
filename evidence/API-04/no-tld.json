@@ -1,0 +1,24 @@
+{
+  "scenario": "API-04",
+  "label": "no-tld",
+  "timestamp_utc": "2026-11-03T09:30:46Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=qa-wix-1793698242",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 400,
+  "response": {
+    "message": "INVALID_DOMAIN",
+    "details": {
+      "validationError": {
+        "fieldViolations": [
+          {
+            "field": "domain",
+            "description": "failed to extract root domain from qa-wix-1793698242, a tld is missing or invalid"
+          }
+        ]
+      }
+    }
+  }
+}

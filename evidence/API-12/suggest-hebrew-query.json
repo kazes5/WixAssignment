@@ -1,0 +1,40 @@
+{
+  "scenario": "API-12",
+  "label": "suggest-hebrew-query",
+  "timestamp_utc": "2026-11-03T09:31:58Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94&paging.limit=5",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "suggestions": [
+      {
+        "domain": "stitine.com",
+        "premium": false
+      },
+      {
+        "domain": "stitin.net",
+        "premium": false
+      },
+      {
+        "domain": "stitin.org",
+        "premium": false
+      },
+      {
+        "domain": "stitin.info",
+        "premium": false
+      },
+      {
+        "domain": "stitin.store",
+        "premium": false
+      }
+    ],
+    "pagingMetadata": {
+      "count": 5,
+      "cursors": {},
+      "hasNext": false
+    }
+  }
+}

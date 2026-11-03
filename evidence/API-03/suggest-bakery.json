@@ -1,0 +1,62 @@
+{
+  "scenario": "API-03",
+  "label": "suggest-bakery",
+  "timestamp_utc": "2026-11-03T09:30:46Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=sourdough%20bakery&paging.limit=10",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "suggestions": [
+      {
+        "domain": "sourdoughbakery.co.il",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakeryco.com",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.net",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakeryshop.com",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.org",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.co",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.online",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.ai",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.store",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakery.info",
+        "premium": false
+      }
+    ],
+    "pagingMetadata": {
+      "count": 10,
+      "cursors": {
+        "next": "eyJxdWVyeSI6InNvdXJkb3VnaCBiYWtlcnkiLCJzdWdnZXN0aW9ucyI6WyJzb3VyZG91Z2hiYWtlcnkuY28uaWwiLCJzb3VyZG91Z2hiYWtlcnljby5jb20iLCJzb3VyZG91Z2hiYWtlcnkubmV0Iiwic291cmRvdWdoYmFrZXJ5c2hvcC5jb20iLCJzb3VyZG91Z2hiYWtlcnkub3JnIiwic291cmRvdWdoYmFrZXJ5LmNvIiwic291cmRvdWdoYmFrZXJ5Lm9ubGluZSIsInNvdXJkb3VnaGJha2VyeS5haSIsInNvdXJkb3VnaGJha2VyeS5zdG9yZSIsInNvdXJkb3VnaGJha2VyeS5pbmZvIl0sInByZXZTdWdnZXN0aW9ucyI6W10sInBlbmRpbmciOlt7ImRvbWFpbiI6InNvdXJkb3VnaGJha2VyeS5iaXoiLCJwcmVtaXVtIjpmYWxzZSwiZW5naW5lIjoiV2l4T3RoZXJHdGxkIn0seyJkb21haW4iOiJzb3VyZG91Z2hiYWtlcnkuc3R1ZGlvIiwicHJlbWl1bSI6ZmFsc2UsImVuZ2luZSI6IldpeE90aGVyR3RsZCJ9LHsiZG9tYWluIjoic291cmRvdWdoYmFrZXJ5LmFwcCIsInByZW1pdW0iOmZhbHNlLCJlbmdpbmUiOiJXaXhPdGhlckd0bGQifSx7ImRvbWFpbiI6InNvdXJkb3VnaGJha2VyeWtpdGNoZW4uY29tIiwicHJlbWl1bSI6ZmFsc2UsImVuZ2luZSI6IkxsbSJ9LHsiZG9tYWluIjoic291cmRvdWdoYmFrZXJ5YmFrZXMuY29tIiwicHJlbWl1bSI6ZmFsc2UsImVuZ2luZSI6IkxsbSJ9LHsiZG9tYWluIjoic291cmRvdWdoYmFrZXJ5Zm9vZHMuY29tIiwicHJlbWl1bSI6ZmFsc2UsImVuZ2luZSI6IkxsbSJ9LHsiZG9tYWluIjoic291cmRvdWdoYmFrZXJ5dHJlYXRzLmNvbSIsInByZW1pdW0iOmZhbHNlLCJlbmdpbmUiOiJMbG0ifSx7ImRvbWFpbiI6ImFydGlzYW4tc291cmRvdWdoYmFrZXJ5LmNvbSIsInByZW1pdW0iOmZhbHNlLCJlbmdpbmUiOiJMbG0ifSx7ImRvbWFpbiI6InNvdXJkb3VnaGJha2VyeWFydGlzYW4uY29tIiwicHJlbWl1bSI6ZmFsc2UsImVuZ2luZSI6IkxsbSJ9XSwic2hvd25Db3VudCI6MTB9"
+      },
+      "hasNext": true
+    }
+  }
+}

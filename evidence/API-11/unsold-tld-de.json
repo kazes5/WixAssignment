@@ -1,0 +1,24 @@
+{
+  "scenario": "API-11",
+  "label": "unsold-tld-de",
+  "timestamp_utc": "2026-11-03T09:31:52Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=qa-wix-1793698242.de",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 400,
+  "response": {
+    "message": "TLD_NOT_SUPPORTED",
+    "details": {
+      "validationError": {
+        "fieldViolations": [
+          {
+            "field": "domain",
+            "description": "Unsupported TLDs found. Only TLDs [academy, accountant, accountants, actor, agency, ai, apartments, app, archi, art, associates, at, attorney, auction, audio, auto, autos, baby, band, bar, be, beauty, beer, best, bet, bid, bike, bingo, bio, biz, black, blackfriday, blog, blue, boats, bond, boo, bot, boutique, build, builders, business, buzz, ca, cab, cafe, camera, camp, capital, car, cards, care, careers, casa, cash, casino, catering, cc, center, ceo, cfd, ch, chat, cheap, christmas, church, city, cl, claims, cleaning, click, clinic, clothing, cloud, club, co, co.at, co.il, co.in, co.uk, coach, codes, coffee, college, com, com.au, com.mx, community, company, computer, condos, construction, consulting, contact, contractors, cooking, cool, country, coupons, credit, creditcard, cricket, cruises, cyou, dad, dance, date, dating, day, deals, delivery, dental, dentist, design, dev, diamonds, digital, direct, directory, discount, doctor, dog, domains, download, earth, education, email, energy, engineer, engineering, enterprises, es, esq, estate, events, exchange, expert, exposed, express, fail, faith, family, fan, fans, farm, fashion, fast, film, finance, financial, firm.in, fish, fishing, fit, fitness, flights, flowers, foo, food, football, forsale, forum, foundation, fr, free, fun, fund, furniture, futbol, fyi, gallery, game, games, garden, gen.in, gg, gifts, glass, global, gmbh, gold, golf, graphics, gratis, green, group, guide, guru, hair, haus, health, healthcare, help, hiphop, holdings, holiday, horse, hospital, host, hosting, hot, house, how, icu, immo, immobilien, in, inc, ind.in, industries, info, ing, ink, institute, insure, international, investments, io, irish, is, it, jewelry, kaufen, kids, kim, kitchen, kiwi, land, lat, lawyer, lease, legal, lgbt, life, lighting, limited, limo, link, live, llc, loan, loans, lol, london, love, ltd, luxury, management, market, marketing, mba, me, media, meme, men, menu, mobi, moda, moe, mom, money, monster, mortgage, mov, movie, mx, name, navy, net, net.in, network, new, news, nexus, ngo, ninja, nl, now, nz, one, ong, onl, online, or.at, org, org.in, partners, party, pet, phd, photo, photography, photos, pics, pictures, pink, pizza, place, plus, poker, press, pro, productions, promo, properties, property, protection, pub, quest, racing, realestate, realty, recipes, red, reisen, rent, rentals, repair, report, rest, restaurant, review, reviews, rip, rocks, rodeo, run, sale, salon, sbs, school, science, security, services, shoes, shop, shopping, show, si, singles, site, ski, soccer, social, software, solar, solutions, space, spot, store, stream, studio, study, style, sucks, supplies, supply, support, surf, systems, tax, taxi, team, tech, technology, tel, tennis, theater, theatre, tienda, tips, tires, today, tokyo, tools, top, tours, town, trade, training, tube, tv, uk, university, uno, us, vacations, vegas, ventures, vet, viajes, video, villas, vin, vip, vision, vote, voyage, watch, webcam, website, wedding, wiki, win, wine, work, works, world, wtf, xyz, yoga, you, zip, zone] are supported."
+          }
+        ]
+      }
+    }
+  }
+}

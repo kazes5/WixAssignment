@@ -1,0 +1,19 @@
+{
+  "scenario": "API-08",
+  "label": "premium-candidate-5",
+  "timestamp_utc": "2026-11-03T09:32:52Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=bread.online",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "bread.online",
+      "available": false,
+      "premium": true,
+      "premiumType": "FIRST_YEAR_AND_RENEWAL"
+    }
+  }
+}
