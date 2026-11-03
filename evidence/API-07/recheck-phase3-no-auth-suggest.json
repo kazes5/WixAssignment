@@ -1,0 +1,32 @@
+{
+  "scenario": "API-07",
+  "label": "recheck-phase3-no-auth-suggest",
+  "timestamp_utc": "2026-11-03T10:02:51Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=bakery&paging.limit=3",
+    "auth": "no auth headers"
+  },
+  "status": 200,
+  "response": {
+    "suggestions": [
+      {
+        "domain": "homebakery.biz",
+        "premium": false
+      },
+      {
+        "domain": "homebakery.store",
+        "premium": false
+      },
+      {
+        "domain": "streetbakery.org",
+        "premium": false
+      }
+    ],
+    "pagingMetadata": {
+      "count": 3,
+      "cursors": {},
+      "hasNext": false
+    }
+  }
+}
