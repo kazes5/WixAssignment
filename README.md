@@ -171,8 +171,27 @@ tests/
 
 ## What I'd do with another week
 
-_To be written by the Manager with Roy._
+1. **Run it in CI.** A GitHub Actions job on every PR plus a nightly run, with the key in repository
+   secrets, the HTML report kept as an artifact, and a flaky-test log so one red run isn't trusted on its own.
+2. **Test from more than one country.** Run the suite from 3–4 regions (e.g. US, EU, Israel, India) and
+   compare: same availability answer everywhere, and a price and currency that make sense for each place.
+   Today everything was tested from Israel only.
+3. **Fault injection instead of load.** Use Playwright's `page.route` to make the price and suggestion
+   calls return 429, 500 or a slow response, and check the page never shows "Available now!" with an active
+   buy button and no price (R12). This needs no extra traffic to Wix.
+4. **Deeper cross-door checks.** Capture the storefront's own `domain-search` calls and compare them field
+   by field with the public API. Check that every domain the Name Generator marks as available is also
+   available in the API (X-02, automated).
+5. **Close the gaps left open:** find an *available* premium domain and check first-year vs renewal pricing
+   (SF-08, R2); test WHOIS invalid-input handling once Finding 2 is fixed; do a real VoiceOver/NVDA pass, and
+   turn the axe scan into a baseline that fails only on *new* violations.
+6. **Get answers on the findings.** Ask the API team whether keyless access (Finding 1) is intended,
+   and update the docs or the test to match.
 
 ## Quality strategy for Wix Domains (5 lines)
 
-_To be written by the Manager with Roy._
+1. **Protect the one answer.** "Can I get this name?" has to be correct and the same across all four doors, so cross-door checks are P0 on every change.
+2. **Test the shared service first, then a few journeys.** Contract tests on the `domain-search` service give fast, stable feedback. A thin layer of UI tests per door covers what the user actually sees.
+3. **Assert behaviour, not data.** Check availability, status and response shape. Never check exact prices or suggestions, which change with time and location.
+4. **Test in the user's world.** Cover several countries and currencies, IDN and RTL input, accessibility and mobile, because that's where the bugs in this assignment were found.
+5. **Watch production.** Synthetic checks on each door, plus funnel metrics (search → available → cart) and error-message tracking, so regressions show up as customer impact before they become support tickets.

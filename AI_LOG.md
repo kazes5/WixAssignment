@@ -31,6 +31,7 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "merged, please continue to next stage, please order the evidences so i'll be able to understand the evidence context and time of run. On the Findings, add/link the evidence and the requirement where it is relevant." | Branch `phase-3-findings`. Re-checked Finding 1 with fresh calls, generated `evidence/README.md` (56 files in capture order with times and context), wrote `FINDINGS.md` with severity/priority defences, evidence links and the requirement or standard broken for each. |
 | 2026-11-03 | "please switch to main, pull and review the project, phase #3 is merged." | Review of the repo: secrets scan of the git history (clean), link and evidence-index checks, 5 issues listed (Phase 3 status stale, broken AI log table, change-log order, weak evidence for Finding 5, my section of the AI log still empty). |
 | 2026-11-03 | "uese your team to fix the issues 1,2 and proceed" | Manager started the Automation Engineer agent on branch `phase-4-automation`: fixed issues 1 and 2, then Playwright suite (24 tests: API, storefront, axe, cross-door), README "How to run" and "Automation choices". Manager re-ran the API suite independently (13/13, API-07 expected failure) before opening the PR. |
+| 2026-11-03 | "merged, please continue to Phase 5" | Branch `phase-5-wrap-up`. Manager drafted the README sections ("another week", 5-line quality strategy) and this section from what happened in the session; Roy approved both. Final check: fresh clone from GitHub passed 24/24, no secrets in the git history. |
 
 ## Where the AI was wrong, and how it was caught
 
@@ -58,9 +59,11 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 
 ## What I chose not to hand to AI
 
-_To be filled in by me (Roy)._
-
-<!-- Ideas to consider: judging severity and priority of findings, deciding what's a real bug vs expected behaviour, the final quality strategy, entering and managing the API key, approving any commit or push. -->
+- Reviewing and merging every pull request (PRs #1–#4): the AI never merged its own work.
+- Final say on scope and order: architecture before the test plan, adding UI, accessibility and multi-language/RTL, and the evidence-ordering request.
+- Deciding what counts as a real bug vs expected behaviour, and accepting the severity/priority ratings in `FINDINGS.md`.
+- Approving the quality strategy and the "another week" plan in `README.md`.
+- The API key itself: creating it in the Wix account. (It was pasted into the chat once; see Security notes.)
 
 ## Security notes
 
