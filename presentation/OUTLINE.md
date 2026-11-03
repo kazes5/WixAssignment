@@ -45,7 +45,7 @@ Every content slide has a small topic label above the title, a key message under
 | 10 | 4 · Automated tests | Playwright, kept small: 24 tests in 3 projects | Checks the answer and response shape, never exact prices | Code tree (13 api / 9 web / 2 cross / 2 helpers), assertion depth, API-07 box | `README.md#how-the-code-is-structured` |
 | 11 | 4 · Automated tests | 21 of 43 scenarios automated, all green | Stable checks automated; human judgement and checkout stay manual | 21/43, 24/24 in 44 s, 24/24 fresh clone, 3 green runs; "stayed manual" panel | `README.md#automation-choices` |
 | 12 | 5 · Findings highlight | Two major issues: an open API and a screen-reader gap | Both S2 Major, reproduced, with evidence | Finding 1 JSON excerpt (`evidence/API-07/missing-key.json`); Finding 3 axe results (`evidence/automation/A11Y-04/`) | `FINDINGS.md` Finding 1 |
-| 13 | 5 · Findings highlight | All five findings, rated by customer impact | Severity = how bad; priority = how soon | Table with severity/priority, "12 risks" strip | `FINDINGS.md#summary` |
+| 13 | 5 · Findings highlight | Bug summary: five findings by customer impact | Severity = how bad; priority = how soon | Table with severity/priority, "12 risks" strip | `FINDINGS.md#summary` |
 | 14 | 6 · Requirements | Every deliverable is in the repo | Each row links to the file that covers it | Traceability table, 10 rows, all ✓ | `Requirements.md` |
 | 15 | 6 · Requirements | The rules were kept, with one honest caveat | No purchase, small API budget, key never committed | Traceability table, 8 rows: 7 ✓, 1 partly (R12 429) | `EXECUTION_PLAN.md` |
 | 16 | Closing | Protect the one answer, everywhere | 5-line quality strategy and "with another week" | Dark slide, numbered strategy | `README.md` |

@@ -521,7 +521,7 @@ pres.addSection({ title: "5 Findings" });
 
 // 13. All five findings + risks
 {
-  const s = content("5 · FINDINGS HIGHLIGHT", "All five findings, rated by customer impact",
+  const s = content("5 · FINDINGS HIGHLIGHT", "Bug summary: five findings by customer impact",
     "Severity is how bad it is. Priority is how soon to fix it. Each was checked against \"Domain basics\".",
     "From FINDINGS.md. Each finding was reproduced at least twice and checked against 'Domain basics' in Requirements.md.\n\n" +
     "1. The API answers without any API key: S2 Major, P1 High.\n" +
