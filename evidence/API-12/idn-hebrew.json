@@ -1,0 +1,28 @@
+{
+  "scenario": "API-12",
+  "label": "idn-hebrew",
+  "timestamp_utc": "2026-11-03T09:31:54Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=%D7%A7%D7%A4%D7%94-1793698242.com",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 400,
+  "response": {
+    "message": "domain is not a valid hostname",
+    "details": {
+      "validationError": {
+        "fieldViolations": [
+          {
+            "field": "domain",
+            "description": "is not a valid hostname",
+            "violatedRule": "FORMAT",
+            "data": {
+              "type": "HOSTNAME"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

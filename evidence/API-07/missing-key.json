@@ -1,0 +1,19 @@
+{
+  "scenario": "API-07",
+  "label": "missing-key",
+  "timestamp_utc": "2026-11-03T09:31:14Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=google.com",
+    "auth": "no auth headers"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "google.com",
+      "available": false,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}

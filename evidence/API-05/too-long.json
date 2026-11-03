@@ -1,0 +1,24 @@
+{
+  "scenario": "API-05",
+  "label": "too-long",
+  "timestamp_utc": "2026-11-03T09:30:47Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 400,
+  "response": {
+    "message": "DOMAIN_TOO_LONG",
+    "details": {
+      "validationError": {
+        "fieldViolations": [
+          {
+            "field": "domain",
+            "description": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.com is too long, maximum allowed domain name is 63 characters (not including tld)"
+          }
+        ]
+      }
+    }
+  }
+}

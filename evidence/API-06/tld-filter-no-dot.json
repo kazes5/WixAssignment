@@ -1,0 +1,36 @@
+{
+  "scenario": "API-06",
+  "label": "tld-filter-no-dot",
+  "timestamp_utc": "2026-11-03T09:30:49Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=sourdough%20bakery&tlds=com&paging.limit=5",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "suggestions": [
+      {
+        "domain": "the-sourdoughbakery.com",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakeryshop.com",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakerykitchen.com",
+        "premium": false
+      },
+      {
+        "domain": "sourdoughbakerybakes.com",
+        "premium": false
+      }
+    ],
+    "pagingMetadata": {
+      "count": 4,
+      "cursors": {},
+      "hasNext": false
+    }
+  }
+}

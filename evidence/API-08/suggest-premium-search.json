@@ -1,0 +1,220 @@
+{
+  "scenario": "API-08",
+  "label": "suggest-premium-search",
+  "timestamp_utc": "2026-11-03T09:32:34Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/suggest-domains?query=crypto&paging.limit=50",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "suggestions": [
+      {
+        "domain": "thecryptostudio.com",
+        "premium": false
+      },
+      {
+        "domain": "cryptolive.shop",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.shop",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.shop",
+        "premium": false
+      },
+      {
+        "domain": "fliescrypto.shop",
+        "premium": false
+      },
+      {
+        "domain": "learncrypto.store",
+        "premium": false
+      },
+      {
+        "domain": "localcrypto.biz",
+        "premium": false
+      },
+      {
+        "domain": "localcrypto.info",
+        "premium": false
+      },
+      {
+        "domain": "localcrypto.store",
+        "premium": false
+      },
+      {
+        "domain": "worldcrypto.info",
+        "premium": false
+      },
+      {
+        "domain": "cryptoinc.org",
+        "premium": false
+      },
+      {
+        "domain": "cryptolive.store",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.org",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.org",
+        "premium": false
+      },
+      {
+        "domain": "cryptoinc.biz",
+        "premium": false
+      },
+      {
+        "domain": "cryptoinc.info",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.biz",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.biz",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.info",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.info",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.online",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.online",
+        "premium": false
+      },
+      {
+        "domain": "realcrypto.store",
+        "premium": false
+      },
+      {
+        "domain": "cryptoinc.store",
+        "premium": false
+      },
+      {
+        "domain": "buytradecryptolive.org",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptoinc.org",
+        "premium": false
+      },
+      {
+        "domain": "webcrypto.biz",
+        "premium": false
+      },
+      {
+        "domain": "buytradecrypto.store",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptolive.store",
+        "premium": false
+      },
+      {
+        "domain": "buylearncrypto.org",
+        "premium": false
+      },
+      {
+        "domain": "learncryptolive.org",
+        "premium": false
+      },
+      {
+        "domain": "buy-trade-crypto.org",
+        "premium": false
+      },
+      {
+        "domain": "trade-crypto-live.org",
+        "premium": false
+      },
+      {
+        "domain": "realtradecrypto.biz",
+        "premium": false
+      },
+      {
+        "domain": "tradecryptoinc.biz",
+        "premium": false
+      },
+      {
+        "domain": "buytradecryptolive.biz",
+        "premium": false
+      },
+      {
+        "domain": "cry-pto.ai",
+        "premium": false
+      },
+      {
+        "domain": "cry-pto.biz",
+        "premium": false
+      },
+      {
+        "domain": "cry-pto.co",
+        "premium": false
+      },
+      {
+        "domain": "cryptoes.biz",
+        "premium": false
+      },
+      {
+        "domain": "cryptoes.co",
+        "premium": false
+      },
+      {
+        "domain": "cryptoes.info",
+        "premium": false
+      },
+      {
+        "domain": "cry-ptoes.ai",
+        "premium": false
+      },
+      {
+        "domain": "cry-ptoes.biz",
+        "premium": false
+      },
+      {
+        "domain": "cry-ptoes.co",
+        "premium": false
+      },
+      {
+        "domain": "cry-ptoes.info",
+        "premium": false
+      },
+      {
+        "domain": "cry-ptoes.org",
+        "premium": false
+      },
+      {
+        "domain": "my-cry-pto.ai",
+        "premium": false
+      },
+      {
+        "domain": "globalcrypto.info",
+        "premium": false
+      },
+      {
+        "domain": "cry-pto-tech.ai",
+        "premium": false
+      }
+    ],
+    "pagingMetadata": {
+      "count": 50,
+      "cursors": {},
+      "hasNext": false
+    }
+  }
+}

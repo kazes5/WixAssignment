@@ -1,0 +1,19 @@
+{
+  "scenario": "API-07",
+  "label": "account-id-only",
+  "timestamp_utc": "2026-11-03T09:31:15Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=google.com",
+    "auth": "wix-account-id only, no API key"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "google.com",
+      "available": false,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}

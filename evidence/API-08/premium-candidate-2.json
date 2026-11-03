@@ -1,0 +1,19 @@
+{
+  "scenario": "API-08",
+  "label": "premium-candidate-2",
+  "timestamp_utc": "2026-11-03T09:31:49Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=bakery.ai",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "bakery.ai",
+      "available": false,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "scenario": "API-12",
+  "label": "idn-punycode",
+  "timestamp_utc": "2026-11-03T09:32:26Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=xn--8dbidqxju.com",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "xn--8dbidqxju.com",
+      "available": true,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}

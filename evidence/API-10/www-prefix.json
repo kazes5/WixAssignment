@@ -1,0 +1,19 @@
+{
+  "scenario": "API-10",
+  "label": "www-prefix",
+  "timestamp_utc": "2026-11-03T09:31:50Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=www.qa-wix-1793698242.com",
+    "auth": "valid API key + wix-account-id"
+  },
+  "status": 200,
+  "response": {
+    "availability": {
+      "domain": "qa-wix-1793698242.com",
+      "available": true,
+      "premium": false,
+      "premiumType": "UNKNOWN_PREMIUM_TYPE"
+    }
+  }
+}
