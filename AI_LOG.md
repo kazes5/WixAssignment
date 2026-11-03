@@ -9,7 +9,7 @@ Updated throughout the work. Newest entries go at the bottom of each section.
 |---|---|
 | **Claude Code** (CLI, model Claude Opus 5.5) | Main assistant: reading requirements, planning, writing docs, running shell commands, and acting as the manager of the agent team |
 | **Wix plugin for Claude Code** (Wix MCP) | Searching the Wix REST docs for the Domain Search API, listing my own Wix site, a domain-suggestion check |
-| **Claude in Chrome** (browser extension) | Confirmed it's connected; planned for network inspection of the web doors (Phase 1) |
+| **Claude in Chrome** (browser extension) | Network inspection of the 3 web doors for `ARCHITECTURE.md` (Phase 1) |
 | **Playwright** (planned) | Test automation (Phase 4) |
 
 Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
@@ -25,6 +25,7 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "please check if you have access to wix" | Confirmed Wix plugin access: own site listed, docs search works, suggestions work. |
 | 2026-11-03 | "review the Agents.md file once again … create a detailed execution plan … the MVP is the test plan and it's execution … connect to the repo" | Second review of `Agents.md`, `EXECUTION_PLAN.md` with phases, pieces, statuses and an API budget, and the local repo linked to GitHub. |
 | 2026-11-03 | "add them to Agents.md, exclude #8 … a ppt with the tests scope, the architecture, test structure and coverage with links to deep dive … do the Architecture first" | Additions appended to `Agents.md` (nothing removed), plan reordered so architecture comes before the test plan, presentation defined as a .pptx. |
+| 2026-11-03 | "mark the progress in the EXECUTION_PLAN.md. create a branch for each stage being executed, create a pull request when done. Start Phase 1" | Branch `phase-1-architecture`. The AI used Claude in Chrome to search on the 3 web doors, captured the network calls (with an in-page request hook to see request and response shapes), and wrote `ARCHITECTURE.md` with a Mermaid diagram. |
 
 ## Where the AI was wrong, and how it was caught
 
@@ -33,6 +34,8 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-02 | **The AI overwrote an existing `.env` file** while saving the API key, without checking its contents first. | The AI noticed it in its own command output (the file was listed before the write) and reported it. | Previous contents (if any) were lost. Rule kept: look at a file before overwriting it. |
 | 2026-11-02 | The first rewrite of `Agents.md` went **beyond the fixes I approved**. I asked for fixes 1–6 and 9; it also restructured the whole file, replaced my original wording, and referred to the requirements file by its old, misspelled name. | I rejected the edit before it was applied. | Second attempt: additions only, original text kept word for word, and all references use `Requirements.md`. |
 | 2026-11-03 | The first execution plan put the full architecture **after** the test plan (with only a short recon before it), which reversed the order in the requirements. | My review of the plan. | Plan reordered: architecture (Phase 1) → test plan and manual execution (Phase 2, MVP). |
+
+| 2026-11-03 | The browser extension's privacy filter hid query strings and some hostnames in captured requests, so the first network list was incomplete. | Many entries came back as "[BLOCKED]". | The AI added an in-page hook that records only paths, parameter names and response shapes, and doesn't print personal data or tokens. |
 
 ## What was changed or thrown away
 
