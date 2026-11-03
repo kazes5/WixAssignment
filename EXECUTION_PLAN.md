@@ -27,7 +27,7 @@ finished and committed before the later phases start.
 | 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
 | 4 | Automation | Automation Engineer | No | ✅ Done (PR #4 merged) |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ✅ Done (PR #5 merged) |
-| 6 | Presentation | Designer | No | 🟦 Deck built, awaiting review (branch `phase-6-presentation`) |
+| 6 | Presentation and one-pager | Designer, Technical Writer | No | 🟦 Awaiting review (PR from `phase-6-presentation`) |
 
 ## Shared conventions
 
@@ -213,6 +213,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 |---|---|---|---|---|---|
 | 6.1 | Outline | Sections: test scope → architecture → test structure → coverage | User approves the outline | ✅ | Outline approved with style and wording changes from Roy |
 | 6.2 | PowerPoint deck | `presentation/WixDomains_QA.pptx` | Each section links to the matching repo file (`ARCHITECTURE.md`, `TEST_PLAN.md`, `FINDINGS.md`, tests, `README.md`) for a deep dive; real results only | ✅ | 15 slides, Wix-style (Madefor fonts, not embedded), speaker notes and a GitHub deep-dive link on every content slide; validated and visually checked |
+| 6.2b | Word one-pager (added on request) | `presentation/WixDomains_QA_OnePager.docx` + preview PNG | One A4 page: tested cases manual vs automated, major bugs, coverage; same style as the deck; real numbers only | ✅ | Technical Writer agent; 1 page checked via PDF, with and without the Madefor fonts |
 | 6.3 | Review | User review | Approved | ⬜ | |
 
 ---
@@ -221,6 +222,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 
 | Date | Change |
 |---|---|
+| 2026-11-03 | Phase 6: Word one-pager added on request; PR opened for the deck and the one-pager. |
 | 2026-11-03 | Phase 6: outline approved with Roy's style and wording changes; `presentation/WixDomains_QA.pptx` built (15 slides, real numbers only, generator in `presentation/build/`). Awaiting review (6.3). |
 | 2026-11-03 | Phase 5 done: README final sections and AI log approved by Roy; clean-clone run 24/24; PR opened. |
 | 2026-11-03 | Phase 4 done on branch `phase-4-automation`: 24 Playwright tests (API, storefront, axe, X-01), 24/24 pass with API-07 as an expected failure (Finding 1); web 3 runs in a row green; 36 API calls; R11 and R12 added to `FINDINGS.md`; `README.md` created. Awaiting review. |
