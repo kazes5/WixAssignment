@@ -26,7 +26,7 @@ finished and committed before the later phases start.
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ✅ Done (PR #2 merged) |
 | 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
 | 4 | Automation | Automation Engineer | No | 🟦 Awaiting review (branch `phase-4-automation`, not pushed) |
-| 5 | Wrap-up: README and AI log | Manager and human | No | ⬜ |
+| 5 | Wrap-up: README and AI log | Manager and human | No | 🟦 Awaiting review (PR from `phase-5-wrap-up`) |
 | 6 | Presentation | Designer | No | ⬜ |
 
 ## Shared conventions
@@ -53,7 +53,8 @@ Limit: a few hundred in total. Target: **under 200**.
 | 2 (manual execution) | ~40 | ~32 | API-key calls via `curl` (evidence in `evidence/API-*`, `evidence/X-02`), plus normal page browsing |
 | 3 (findings reproduction) | ~20 | 2 | Finding 1 re-check |
 | 4 (automation development and runs) | ~100 | 53 | 19 API-key calls per full run (17 api + 2 cross). Used: 1 API-only run (17) + 1 full run (19) by the Automation Engineer, + 1 API-only verification run (17) by the Manager. Web-only runs and exploration scripts use no key (~110 public page loads, which hit a 429 rate limit once; see R12) |
-| **Total** | **~170** | **~100** | |
+| 5 (clean-clone check) | 19 | 19 | One full `npm test` run from a fresh clone |
+| **Total** | **~190** | **~119** | |
 
 ---
 
@@ -197,10 +198,10 @@ Owner: **Manager**, with the human writing or approving the personal sections.
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 5.1 | README final sections | "What I'd do with another week", "Quality strategy in 5 lines" | Present | ⬜ | |
-| 5.2 | AI log | `AI_LOG.md`: tools and key prompts, where the AI was wrong and how it was caught, what was changed or thrown away, what was not handed to AI | All 4 parts present | ⬜ | Human input required |
-| 5.3 | Commit agent config | `Agents.md` and any other agent config files committed | In the repo | ⬜ | Commit: `docs: readme and AI log` |
-| 5.4 | Final check | No secrets in the git history; all files present; tests run from a clean clone | Verified | ⬜ | |
+| 5.1 | README final sections | "What I'd do with another week", "Quality strategy in 5 lines" | Present | ✅ | Drafted by the Manager, approved by Roy |
+| 5.2 | AI log | `AI_LOG.md`: tools and key prompts, where the AI was wrong and how it was caught, what was changed or thrown away, what was not handed to AI | All 4 parts present | ✅ | All 4 parts present; Roy approved "What I chose not to hand to AI" |
+| 5.3 | Commit agent config | `Agents.md` and any other agent config files committed | In the repo | ✅ | `Agents.md` and `.claude/settings.json` (enabled plugins, no secrets) are tracked; `settings.local.json` stays gitignored |
+| 5.4 | Final check | No secrets in the git history; all files present; tests run from a clean clone | Verified | ✅ | Fresh clone of `main` from GitHub + `npm ci` + `.env`: 24/24 passed in 46 s; key and account ID not in any commit on any branch |
 
 ---
 
@@ -220,6 +221,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 
 | Date | Change |
 |---|---|
+| 2026-11-03 | Phase 5 done: README final sections and AI log approved by Roy; clean-clone run 24/24; PR opened. |
 | 2026-11-03 | Phase 4 done on branch `phase-4-automation`: 24 Playwright tests (API, storefront, axe, X-01), 24/24 pass with API-07 as an expected failure (Finding 1); web 3 runs in a row green; 36 API calls; R11 and R12 added to `FINDINGS.md`; `README.md` created. Awaiting review. |
 | 2026-11-03 | Housekeeping: Phase 3 marked done (PR #3 merged); AI log table fixed. |
 | 2026-11-03 | Plan created. Phase 0 partly done (key stored, repo connected). |
