@@ -182,7 +182,7 @@ Owner: **Automation Engineer**. Tool: Playwright (TypeScript).
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
 | 4.1 | Project skeleton | `package.json`, `playwright.config.ts`, `.env` loading with `dotenv` | `npm test` runs an empty suite | ✅ | Playwright 1.64 + dotenv; 3 projects (api, web, cross); traces off where the API key is sent |
-| 4.2 | API tests | `tests/api/*.spec.ts` for API-01 to API-09 | Pass, or fail only on real findings | ⬜ | |
+| 4.2 | API tests | `tests/api/*.spec.ts` for API-01 to API-09 | Pass, or fail only on real findings | ✅ | 13 tests (API-01 to API-11, API-09 inside 01–03); 12 pass, API-07 marked `test.fail()` for Finding 1; 17 API calls per run |
 | 4.3 | Web door tests | `tests/web/storefront.spec.ts` for SF-01 and SF-02 (plus SF-04 if stable) | Pass reliably 3 runs in a row | ⬜ | |
 | 4.4 | Cross-door test | X-01: API vs storefront for one free and one taken name | Passes | ⬜ | |
 | 4.5 | Evidence | HTML report, screenshots and traces on failure | Report opens after a run | ⬜ | |
