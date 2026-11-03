@@ -52,8 +52,8 @@ Limit: a few hundred in total. Target: **under 200**.
 | 1 (architecture recon) | ~5 | ~10 | No API-key calls. Normal page browsing on the 3 doors, plus ~10 extra in-page requests to capture response shapes (2 availability, 2 suggestions, 2 user-domains, prices, TLD list, WHOIS) |
 | 2 (manual execution) | ~40 | ~32 | API-key calls via `curl` (evidence in `evidence/API-*`, `evidence/X-02`), plus normal page browsing |
 | 3 (findings reproduction) | ~20 | 2 | Finding 1 re-check |
-| 4 (automation development and runs) | ~100 | 36 | 19 API-key calls per full run (17 api + 2 cross). Used: 1 API-only run (17) + 1 full run (19). Web-only runs and exploration scripts use no key (~110 public page loads, which hit a 429 rate limit once; see R12) |
-| **Total** | **~170** | **~83** | |
+| 4 (automation development and runs) | ~100 | 53 | 19 API-key calls per full run (17 api + 2 cross). Used: 1 API-only run (17) + 1 full run (19) by the Automation Engineer, + 1 API-only verification run (17) by the Manager. Web-only runs and exploration scripts use no key (~110 public page loads, which hit a 429 rate limit once; see R12) |
+| **Total** | **~170** | **~100** | |
 
 ---
 
