@@ -27,7 +27,8 @@ finished and committed before the later phases start.
 | 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
 | 4 | Automation | Automation Engineer | No | ✅ Done (PR #4 merged) |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ✅ Done (PR #5 merged) |
-| 6 | Presentation and one-pager | Designer, Technical Writer | No | ✅ Approved by Roy (merge of PR #6 pending) |
+| 6 | Presentation and one-pager | Designer, Technical Writer | No | ✅ Approved by Roy, then removed from the repo on request (merge of PR #6 pending) |
+| 7 | External review fixes (optional) | Manager, Senior QA Engineer | No | ⬜ Proposed, waiting for Roy's approval |
 
 ## Shared conventions
 
@@ -215,6 +216,24 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 | 6.2 | PowerPoint deck | `presentation/WixDomains_QA.pptx` | Each section links to the matching repo file (`ARCHITECTURE.md`, `TEST_PLAN.md`, `FINDINGS.md`, tests, `README.md`) for a deep dive; real results only | ✅ | Restructured on Roy's request around 6 topics (feature, architecture per door, manual, automated, findings, requirements traceability): 16 slides, Wix-style, speaker notes and a deep-dive link on every content slide; validated and visually checked |
 | 6.2b | Word one-pager (added on request) | `presentation/WixDomains_QA_OnePager.docx` + preview PNG | One A4 page: tested cases manual vs automated, major bugs, coverage; same style as the deck; real numbers only | ✅ | Technical Writer agent; 1 page checked via PDF, with and without the Madefor fonts |
 | 6.3 | Review | User review | Approved | ✅ | Roy approved the restructured 16-slide deck (incl. the "Bug summary" slide) and the one-pager |
+| 6.4 | Remove presentation | `presentation/` deleted from the repo | Folder gone; files recoverable from git history | ✅ | Removed on Roy's request (commit `2580509`); last version in commit `892b34e` |
+
+---
+
+## Phase 7 (optional): External review fixes
+
+Owner: **Manager**, with the **Senior QA Engineer** for re-tests. Branch: `phase-7-review-fixes`, one commit per piece.
+Source: an external review of the repo (2026-11-03) that found 5 gaps. Nothing here is started; each piece waits for Roy's approval.
+Estimated cost: ~2 API-key calls and ~12 public page loads.
+
+| # | Review gap | Proposed fix | Done when | Status | Note |
+|---|---|---|---|---|---|
+| 7.1 | WH-04 marked ✅ although it failed (misleading "connection issue" for a shared link with a full URL) | Mark WH-04 ❌; summary becomes 22 pass / 12 observation / 7 fail / 2 partial (WHOIS row: pass 2→1, fail 1→2). Add WH-04 as a third reproduction of Finding 2. Update the counts in `TEST_PLAN.md` (summary, fails table) and in the 2.6 note | Counts agree in every file | ⬜ Optional | No re-test needed: the existing screenshot shows the failure |
+| 7.2 | Planned manual checks not completed | **SF-03:** Roy opens "Make It Yours" for a `qa-wix-<ts>.com` name while logged in, checks domain and price, screenshots, **stops before paying** (our browser tools can't reach `manage.wix.com`). **API-03:** check availability of the first suggestion (2 API calls, JSON saved). **BNG-02:** click a generated domain link, confirm the storefront opens with that name. **SF-06/07:** run the skipped variants (spaces, `www.` prefix, leading hyphen) with screenshots | Each step really run with evidence, or marked ⏸️ with the reason | ⬜ Optional | Needs ~2 minutes of Roy's time for SF-03. A new issue follows the usual rules (confirmed twice, checked against "Domain basics"); with 5 findings already, it would go in as a risk |
+| 7.3 | README says Node.js 18+, but `@axe-core/playwright` needs Node.js 22.12+ | Change the README prerequisite to Node.js 22.12+; add `"engines": { "node": ">=22.12" }` to `package.json` | README and `package.json` agree with `package-lock.json` | ⬜ Optional | |
+| 7.4 | Conclusions beyond the saved evidence | **Finding 3:** retitle to "Results page fails accessibility checks: no page language, unlabelled search box, unnamed buttons, results not announced"; base the S2/P2 rating on the WCAG Level A failures confirmed by axe; note that the screen-reader experience wasn't verified. Optional: a 10-minute VoiceOver pass by Roy. **Architecture:** re-capture one sanitised HAR per web door with Playwright (logged out, cookies and auth headers stripped), save to `evidence/ARCH/`, link from `ARCHITECTURE.md`; mark any claim not visible in a HAR as "observed in DevTools on 2026-11-03, not saved" | Every claim in `FINDINGS.md` and `ARCHITECTURE.md` points to saved evidence or is labelled as unsaved | ⬜ Optional | |
+| 7.5 | Process rules: API budget is approximate; several pieces were committed together | **Budget:** replace the phase totals with an itemised call log (one row per saved manual JSON, one row per automated run with its fixed count of 17 or 19; rows that can't be counted exactly marked "estimated" with the reason), and log every new call as it's made. **Commits:** don't rewrite history (the rules say keep the real history); add a "Process deviations" note to this file and `AI_LOG.md` naming the grouped pieces, and commit after every piece from Phase 7 on | Call log exists and adds up; deviations documented | ⬜ Optional | |
+| 7.6 | Review | Roy reviews the fixes | Approved | ⬜ Optional | |
 
 ---
 
@@ -222,6 +241,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 
 | Date | Change |
 |---|---|
+| 2026-11-03 | `presentation/` removed on Roy's request. Optional Phase 7 added with the proposed fixes for the 5 gaps from an external review (not started). |
 | 2026-11-03 | Phase 6 approved: deck restructured around 6 topics, slide 13 renamed "Bug summary", one-pager approved. All phases done. |
 | 2026-11-03 | Phase 6: deck restructured on Roy's request into 6 topics (16 slides): one architecture slide per door, manual and automated coverage, findings highlight, and a requirements traceability table (17 ✅, 1 ⚠️ for the R12 rate limit). |
 | 2026-11-03 | Phase 6: Word one-pager added on request; PR opened for the deck and the one-pager. |
