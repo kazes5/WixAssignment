@@ -21,7 +21,7 @@ finished and committed before the later phases start.
 
 | Phase | Name | Owner | MVP? | Status |
 |---|---|---|---|---|
-| 0 | Setup | Manager | Prerequisite | 🟦 In progress |
+| 0 | Setup | Manager | Prerequisite | ✅ Done |
 | 1 | Architecture | System Architect | Prerequisite for the MVP | ⬜ |
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ⬜ |
 | 3 | Findings | Senior QA Engineer | No | ⬜ |
@@ -65,7 +65,7 @@ Limit: a few hundred in total. Target: **under 200**.
 | 0.3 | Set git author name | git config | `git config user.name` returns a name | ✅ | Set to Roy (this repo only) |
 | 0.4 | Finalize agent instructions | `Agents.md` (additions only) | Review gaps addressed, original content kept | ✅ | Additions section appended |
 | 0.5 | Add this plan, `.env.example` and `AI_LOG.md` | files | Files exist | ✅ | |
-| 0.6 | First commit and push | commit on `main` | Pushed to GitHub; `.env` confirmed not in the commit | ⬜ | Suggested message: `chore: project setup, agent instructions and execution plan` |
+| 0.6 | First commit and push | commit on `main` | Pushed to GitHub; `.env` confirmed not in the commit | ✅ | Commit bc9ba22, secret scan clean |
 
 ---
 
