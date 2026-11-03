@@ -1,0 +1,104 @@
+{
+  "url": "https://www.wix.com/domains",
+  "violations": [
+    {
+      "rule": "color-contrast",
+      "impact": "serious",
+      "elements": 2,
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+    }
+  ],
+  "full": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#8fa8ff",
+                "contrastRatio": 2.27,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1",
+                "shadowColor": "#c3d0ff"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" class=\"StylableButton2545352419__root comp-mumcmwjf_r_comp-msovzdgd11-styleId__root wixui-button wixui-blks-icon-main-cta blks-icon-main-cta\" data-testid=\"buttonContent\" aria-label=\"Search Domains\">",
+                  "target": [
+                    ".comp-mumcmwjf_r_comp-msovzdgd11-styleId__root"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #8fa8ff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"StylableButton2545352419__label wixui-button__label\" data-testid=\"stylablebutton-label\">Search Domains</span>",
+          "target": [
+            ".comp-mumcmwjf_r_comp-msovzdgd11-styleId__root > .StylableButton2545352419__container > .StylableButton2545352419__label.wixui-button__label[data-testid=\"stylablebutton-label\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #8fa8ff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fgColor": "#ffffff",
+                "bgColor": "#8fa8ff",
+                "contrastRatio": 2.27,
+                "fontSize": "13.9pt (18.56px)",
+                "fontWeight": "normal",
+                "messageKey": null,
+                "expectedContrastRatio": "4.5:1",
+                "shadowColor": "#c3d0ff"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" class=\"StylableButton2545352419__root comp-munss3mf_r_comp-msovzdgd11-styleId__root wixui-button wixui-blks-icon-main-cta blks-icon-main-cta\" data-testid=\"buttonContent\" aria-label=\"Search Domains\">",
+                  "target": [
+                    ".comp-munss3mf_r_comp-msovzdgd11-styleId__root"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #8fa8ff, font size: 13.9pt (18.56px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"StylableButton2545352419__label wixui-button__label\" data-testid=\"stylablebutton-label\">Search Domains</span>",
+          "target": [
+            ".comp-munss3mf_r_comp-msovzdgd11-styleId__root > .StylableButton2545352419__container > .StylableButton2545352419__label.wixui-button__label[data-testid=\"stylablebutton-label\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.27 (foreground color: #ffffff, background color: #8fa8ff, font size: 13.9pt (18.56px), font weight: normal). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "context": "Playwright web project, run 3 of the stability check, test SF-01, logged out, headless Chromium, visitor in Israel. Extracted from the Playwright trace: request path, method, status and timing only (no headers, cookies or bodies).",
+  "page": "https://www.wix.com/domain/result/?q=qa-wix-1793701909.com",
+  "cause_note": "HTTP 429 = rate limited. Triggered by our own volume (~60 result-page loads in ~15 min from one IP during test development). Not reproduced on purpose (no load testing).",
+  "summary_counts": {
+    "GET /store/api/v1/sale/8b1b47e6-9f58-4e59-b147-cac894bec8da -> 200": 1,
+    "POST /_serverless/domains-serverless-services/v1/suggested-tld-display-prices -> 429": 3,
+    "GET /_serverless/premium-domains-serverless/domain-tlds/list-tlds -> 200": 1,
+    "GET /domain-search/v2/check-domain-availability -> 200": 1,
+    "GET /domain-search/v2/suggest-domains -> 200": 1,
+    "GET /_serverless/domains-serverless-services/v1/tld-promotions -> 429": 1,
+    "GET /_serverless/domains-serverless-services/v1/keywords -> 429": 1,
+    "POST /_serverless/domains-serverless-services/v1/tld-display-prices -> 429": 50
+  },
+  "requests": [
+    {
+      "started_utc": "2026-11-03T10:31:50.529Z",
+      "method": "GET",
+      "path": "/store/api/v1/sale/8b1b47e6-9f58-4e59-b147-cac894bec8da",
+      "status": 200,
+      "ms": 297
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.576Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/suggested-tld-display-prices",
+      "status": 429,
+      "ms": 95
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.580Z",
+      "method": "GET",
+      "path": "/_serverless/premium-domains-serverless/domain-tlds/list-tlds",
+      "status": 200,
+      "ms": 943
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.583Z",
+      "method": "GET",
+      "path": "/domain-search/v2/check-domain-availability",
+      "status": 200,
+      "ms": 377
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.583Z",
+      "method": "GET",
+      "path": "/domain-search/v2/suggest-domains",
+      "status": 200,
+      "ms": 2707
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.619Z",
+      "method": "GET",
+      "path": "/_serverless/domains-serverless-services/v1/tld-promotions",
+      "status": 429,
+      "ms": 106
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.619Z",
+      "method": "GET",
+      "path": "/_serverless/domains-serverless-services/v1/keywords",
+      "status": 429,
+      "ms": 111
+    },
+    {
+      "started_utc": "2026-11-03T10:31:50.980Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/suggested-tld-display-prices",
+      "status": 429,
+      "ms": 119
+    },
+    {
+      "started_utc": "2026-11-03T10:31:51.105Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 93
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.352Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/suggested-tld-display-prices",
+      "status": 429,
+      "ms": 98
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.471Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 96
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 101
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 122
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 124
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 123
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 124
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 128
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 132
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 133
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 137
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 137
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 146
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 147
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 146
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.472Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 157
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 128
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 133
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 140
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 145
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 147
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 149
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 150
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 155
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 155
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 155
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.473Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 179
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 139
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 140
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 144
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 144
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 147
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 147
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 147
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 149
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 149
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 153
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 155
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 154
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 154
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 155
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.474Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 209
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.475Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.475Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 148
+    },
+    {
+      "started_utc": "2026-11-03T10:31:53.475Z",
+      "method": "POST",
+      "path": "/_serverless/domains-serverless-services/v1/tld-display-prices",
+      "status": 429,
+      "ms": 154
+    }
+  ]
+}

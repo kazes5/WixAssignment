@@ -11,7 +11,7 @@ Updated throughout the work. Newest entries go at the bottom of each section.
 | **Wix plugin for Claude Code** (Wix MCP) | Searching the Wix REST docs for the Domain Search API, listing my own Wix site, a domain-suggestion check |
 | **Claude in Chrome** (browser extension) | Network inspection of the 3 web doors for `ARCHITECTURE.md` (Phase 1) |
 | **Playwright browser plugin** (MCP) | Checking the German site and `he.wix.com`, which the Chrome extension had no permission for (Phase 2) |
-| **Playwright** (planned) | Test automation (Phase 4) |
+| **Playwright** (`@playwright/test`, `@axe-core/playwright`) | Test automation written by the Automation Engineer agent (Phase 4) |
 
 Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 
@@ -29,6 +29,8 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "mark the progress in the EXECUTION_PLAN.md. create a branch for each stage being executed, create a pull request when done. Start Phase 1" | Branch `phase-1-architecture`. The AI used Claude in Chrome to search on the 3 web doors, captured the network calls (with an in-page request hook to see request and response shapes), and wrote `ARCHITECTURE.md` with a Mermaid diagram. |
 | 2026-11-03 | "merged, start Phase 2, please make sure to include UI,Functionality,accessability,Multi Language\\RTL in the test plan." | Branch `phase-2-test-plan`. API scenarios run with `curl` (evidence saved as JSON without the key); web doors tested in Chrome; German site and language checks with the Playwright browser; `TEST_PLAN.md` with 43 scenarios and results. |
 | 2026-11-03 | "merged, please continue to next stage, please order the evidences so i'll be able to understand the evidence context and time of run. On the Findings, add/link the evidence and the requirement where it is relevant." | Branch `phase-3-findings`. Re-checked Finding 1 with fresh calls, generated `evidence/README.md` (56 files in capture order with times and context), wrote `FINDINGS.md` with severity/priority defences, evidence links and the requirement or standard broken for each. |
+| 2026-11-03 | "please switch to main, pull and review the project, phase #3 is merged." | Review of the repo: secrets scan of the git history (clean), link and evidence-index checks, 5 issues listed (Phase 3 status stale, broken AI log table, change-log order, weak evidence for Finding 5, my section of the AI log still empty). |
+| 2026-11-03 | "uese your team to fix the issues 1,2 and proceed" | Manager started the Automation Engineer agent on branch `phase-4-automation`: fixed issues 1 and 2, then Playwright suite (24 tests: API, storefront, axe, cross-door), README "How to run" and "Automation choices". Manager re-ran the API suite independently (13/13, API-07 expected failure) before opening the PR. |
 
 ## Where the AI was wrong, and how it was caught
 
@@ -37,12 +39,16 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-02 | **The AI overwrote an existing `.env` file** while saving the API key, without checking its contents first. | The AI noticed it in its own command output (the file was listed before the write) and reported it. | Previous contents (if any) were lost. Rule kept: look at a file before overwriting it. |
 | 2026-11-02 | The first rewrite of `Agents.md` went **beyond the fixes I approved**. I asked for fixes 1–6 and 9; it also restructured the whole file, replaced my original wording, and referred to the requirements file by its old, misspelled name. | I rejected the edit before it was applied. | Second attempt: additions only, original text kept word for word, and all references use `Requirements.md`. |
 | 2026-11-03 | The first execution plan put the full architecture **after** the test plan (with only a short recon before it), which reversed the order in the requirements. | My review of the plan. | Plan reordered: architecture (Phase 1) → test plan and manual execution (Phase 2, MVP). |
-
 | 2026-11-03 | The browser extension's privacy filter hid query strings and some hostnames in captured requests, so the first network list was incomplete. | Many entries came back as "[BLOCKED]". | The AI added an in-page hook that records only paths, parameter names and response shapes, and doesn't print personal data or tokens. |
 | 2026-11-03 | The AI's first API helper script crashed on the "no auth headers" case (an empty argument list in bash), so the first missing-key test didn't run. | The script printed an "unbound variable" error. | Fixed the script and re-ran; the result (the API answers without a key) was then confirmed 4 ways. |
 | 2026-11-03 | The AI tried to load the axe accessibility scanner from a CDN into the live Wix page. | Blocked by the environment's permission check (running external code). | Not retried. Replaced with read-only DOM checks; the axe scan moves to Phase 4 via the official `@axe-core/playwright` package. |
 | 2026-11-03 | The WHOIS "connection issue" first appeared on a hand-built deep link, which isn't how users search. | The AI re-ran it through the real input box before calling it a bug. | URL input through the box works (pass); invalid characters fail from both entry points (real bug). |
 | 2026-11-03 | Screenshot copies in `evidence/` all had the copy time, not the capture time, so a time-ordered index built from file dates would have been wrong. | Noticed while building the evidence index. | Capture times taken from the browser tool's original file names (batch start, ±30 s) and labelled as approximate; API times come from the call script and are exact. |
+| 2026-11-03 | The Automation Engineer's first unique-name format (`Date.now()` + random suffix, a 23-character label) made SF-01 fail. | The failing test; the investigation showed the storefront truncates long names in the "Exact Match" card. | Switched to `qa-wix-<unix seconds>`; the truncation was logged as observation R11. |
+| 2026-11-03 | The Automation Engineer caused a `429 Too Many Requests` from wix.com's price services (about 60 result-page loads in ~15 min with 2 workers), so run 3 of the first stability check failed. | Read the trace's network log instead of retrying blindly. | 1 worker, a cool-down and spacing between runs; 3 clean runs in a row afterwards. Documented in the README; the page's behaviour under 429 logged as R12 (not reproduced on purpose). |
+| 2026-11-03 | axe flagged the landing page's "Search Domains" button for contrast (2.27:1). | The agent checked the computed colour (`rgb(47, 93, 255)`, about 5.1:1, passes). | Not reported. This is why the axe scan reports results instead of failing the build. |
+| 2026-11-03 | The first secrets scan of the HTML report missed the base64 zip embedded in it. | The agent noticed the embedded archive. | Decoded and re-scanned: 0 hits. Traces are off for the API projects because they record request headers. |
+| 2026-11-03 | The agent first wrote "12 of 43 scenarios automated", counting headers rather than scenarios. | Its own check before committing. | Corrected to 21 of 43 (fully or partly). |
 
 ## What was changed or thrown away
 

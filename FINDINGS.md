@@ -40,7 +40,7 @@ Severity is about impact on the person affected. Priority adds **how many people
 | **Priority** | **P1 High.** Every caller is affected (100% reproducible). It leaves the suggestion engine and registry lookups open to unmetered anonymous use (cost and abuse risk). Whether the fix is gateway enforcement or a docs correction, it's a small, well-scoped change. |
 | **Requirement broken** | Wix docs, [Check Domain Availability](https://dev.wix.com/docs/api-reference/account-level/domains/domain-search/availability-v2/check-domain-availability) and [Suggest Domains](https://dev.wix.com/docs/api-reference/account-level/domains/domain-search/suggestion-v2/suggest-domains): "This call requires an account level API key". Assignment, [`Requirements.md`](Requirements.md) → Domain basics: "To call the public API you need an account-level API key." |
 | **Domain basics check** | Not covered by any "expected behaviour" item. |
-| **Reproducibility** | 6 of 6 attempts, on both endpoints, in two separate sessions (Phase 2 and the Phase 3 re-check). |
+| **Reproducibility** | 7 of 7 attempts, on both endpoints, in three separate sessions (Phase 2, the Phase 3 re-check, and the Phase 4 automated test API-07). |
 
 **Steps to reproduce**
 1. `curl "https://www.wixapis.com/domain-search/v2/check-domain-availability?domain=google.com"` with **no headers**.
@@ -58,6 +58,7 @@ Severity is about impact on the person affected. Priority adds **how many people
 | 4 | Invalid key, suggestions endpoint | 200, 3 suggestions | [invalid-key-suggest.json](evidence/API-07/invalid-key-suggest.json) |
 | 5 | No headers (Phase 3 re-check) | 200, fresh name `available:true` | [recheck-phase3-no-auth-free-name.json](evidence/API-07/recheck-phase3-no-auth-free-name.json) |
 | 6 | No headers, suggestions (Phase 3 re-check) | 200, 3 suggestions | [recheck-phase3-no-auth-suggest.json](evidence/API-07/recheck-phase3-no-auth-suggest.json) |
+| 7 | No headers (Phase 4 automated test API-07, 10:38 UTC) | 200 (test expected 401/403) | [expected-failure-error-context.md](evidence/automation/API-07/expected-failure-error-context.md) |
 
 **Notes**
 - For comparison, the same calls **with** a valid key return identical data ([free-name.json](evidence/API-01/free-name.json)), so the key currently makes no difference.
@@ -134,7 +135,7 @@ Severity is about impact on the person affected. Priority adds **how many people
 | [keyboard-focus-get-it-button.jpg](evidence/A11Y-02/keyboard-focus-get-it-button.jpg) | Focus visible (passes), but the "Get It" buttons have no domain context |
 | [german-results-page.png](evidence/I18N-05/german-results-page.png) | Same results page in German (`lang` empty there too) |
 
-**Limitation:** the automated axe-core scan couldn't run in this environment ([A11Y-04](TEST_PLAN.md#67-accessibility)). It's planned for Phase 4 with `@axe-core/playwright` and may find more.
+**Automated confirmation (Phase 4):** the axe-core scan that was blocked manually ([A11Y-04](TEST_PLAN.md#67-accessibility)) now runs in Playwright ([`tests/web/a11y.spec.ts`](tests/web/a11y.spec.ts)), logged out. On the results page it reports `button-name` (critical, 3 buttons), `label` (critical, the search box) and `html-has-lang` (serious): the same gaps found by hand. Evidence: [axe-storefront-results.json](evidence/automation/A11Y-04/axe-storefront-results.json). (axe also flags `color-contrast` on the landing page's "Search Domains" button; a manual check of the computed colours gives about 5.1:1, which passes, so it isn't reported.)
 
 ---
 
@@ -185,7 +186,8 @@ Severity is about impact on the person affected. Priority adds **how many people
 |---|---|
 | [too-long-70-chars.jpg](evidence/SF-07/too-long-70-chars.jpg) | The message (09:35 UTC) |
 | [too-long.json](evidence/API-05/too-long.json) | The API's wording: "maximum allowed … 63 characters" |
-| 63-character search | Recorded in [TEST_PLAN UI-04](TEST_PLAN.md#66-ui) (page text, no screenshot) |
+| [63-chars-accepted.png](evidence/automation/UI-04/63-chars-accepted.png) | Phase 4 automation: exactly 63 characters accepted with a normal answer, no length message |
+| [70-chars-length-message.png](evidence/automation/UI-04/70-chars-length-message.png) | Phase 4 automation: the "fewer than 63" message for 70 characters, captured again |
 
 ---
 
@@ -205,3 +207,5 @@ These came up during testing. Each one is either expected per "Domain basics", a
 | R8 | Internally, `google.com` / `facebook.com` are classified as "belongs to a different Wix user" (`user-domains` 403, analytics `DOMAIN_IN_ANOTHER_WIX_ACCOUNT`) | The screen message was correct | Skewed analytics or offers if the label is used downstream | [ARCHITECTURE §2.1 and §5](ARCHITECTURE.md) |
 | R9 | Premium pricing (first year vs renewal) **not verified**: no *available* premium domain found within budget | Untested, not failed | Premium price display is a known complaint area | [API-08 folder](evidence/API-08/) |
 | R10 | Business description from the Name Generator is placed in the page URL | Common pattern | Minor privacy and analytics exposure | [ARCHITECTURE §2.2](ARCHITECTURE.md) |
+| R11 | Long names are **truncated in the middle** in the "Exact Match" card (from a ~23-character name: `qa-wix-17...1584123456.com`, `sourdough...793701668.com`), although the card has room and the list below shows the full name. The full name appears in a hover tooltip, but the heading text itself (what a screen reader reads) is truncated, and touch users can't hover. Found by automation (Phase 4); seen 3 times | Deliberate design with a tooltip | The user can't check the exact name they're about to buy on mobile or with a screen reader | [long-name-truncated-exact-match.png](evidence/automation/observations/long-name-truncated-exact-match.png) |
+| R12 | When wix.com's price services are rate limited (`429`), the results page still shows "Available now!" and active buy buttons **with no price at all**, and fires ~50 parallel per-TLD price requests in one burst (all `429`). Seen once (Phase 4), caused by our own test volume during development | Rate limiting is a legitimate protection, and we caused it; not reproduced on purpose (no load testing) | No price shown before the buy step; the burst of retries adds load exactly when the service is overloaded | [rate-limited-no-prices-buy-button-active.png](evidence/automation/observations/rate-limited-no-prices-buy-button-active.png), [rate-limited-network-excerpt.json](evidence/automation/observations/rate-limited-network-excerpt.json) |
