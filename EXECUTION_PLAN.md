@@ -23,8 +23,8 @@ finished and committed before the later phases start.
 |---|---|---|---|---|
 | 0 | Setup | Manager | Prerequisite | ✅ Done |
 | 1 | Architecture | System Architect | Prerequisite for the MVP | ✅ Done (PR #1 merged) |
-| 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | 🟦 Awaiting review (PR from `phase-2-test-plan`) |
-| 3 | Findings | Senior QA Engineer | No | ⬜ |
+| 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ✅ Done (PR #2 merged) |
+| 3 | Findings | Senior QA Engineer | No | 🟦 Awaiting review (PR from `phase-3-findings`) |
 | 4 | Automation | Automation Engineer | No | ⬜ |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ⬜ |
 | 6 | Presentation | Designer | No | ⬜ |
@@ -51,9 +51,9 @@ Limit: a few hundred in total. Target: **under 200**.
 | 0 (connectivity checks) | 3 | 3 | 1 availability call with the key, 2 Wix plugin calls |
 | 1 (architecture recon) | ~5 | ~10 | No API-key calls. Normal page browsing on the 3 doors, plus ~10 extra in-page requests to capture response shapes (2 availability, 2 suggestions, 2 user-domains, prices, TLD list, WHOIS) |
 | 2 (manual execution) | ~40 | ~32 | API-key calls via `curl` (evidence in `evidence/API-*`, `evidence/X-02`), plus normal page browsing |
-| 3 (findings reproduction) | ~20 | | |
+| 3 (findings reproduction) | ~20 | 2 | Finding 1 re-check |
 | 4 (automation development and runs) | ~100 | | ~10 calls per full run, ~10 runs |
-| **Total** | **~170** | **~45** | |
+| **Total** | **~170** | **~47** | |
 
 ---
 
@@ -107,7 +107,7 @@ Built on `ARCHITECTURE.md` from Phase 1. Starts only after Phase 1 is approved.
 | 2.4 | Write P1 scenarios | Scenario tables | All P1 scenarios below written | ✅ | |
 | 2.5 | Execute P1 scenarios | Results and evidence | Every P1 step run and recorded | ✅ | Commit: `test: P1 scenarios executed` |
 | 2.6 | Execution summary | "Results summary" section: pass/fail counts, blocked items, candidate findings | Summary at the top of `TEST_PLAN.md` | ✅ | 43 scenarios: 23 pass, 12 pass with observation, 5 fail, 3 partial |
-| 2.7 | MVP review | Human review | User approves the MVP | 🟦 | PR open for review |
+| 2.7 | MVP review | Human review | User approves the MVP | ✅ | PR #2 merged |
 
 ### Scenario catalogue
 
@@ -167,9 +167,10 @@ Owner: **Senior QA Engineer** (findings come from manual exploration). Output: `
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 3.1 | Triage candidates | Shortlist from the Phase 2 results | Each candidate checked against "Domain basics" (not expected behaviour) | ⬜ | |
-| 3.2 | Reproduce | Reproduction steps confirmed at least twice | Evidence saved | ⬜ | |
-| 3.3 | Write up to 5 findings | Title, door, steps, expected vs actual, evidence, severity, priority, and a one-line defence of each rating | Up to 5; or risks and observations if no real bug | ⬜ | Commit: `docs: findings` |
+| 3.1 | Triage candidates | Shortlist from the Phase 2 results | Each candidate checked against "Domain basics" (not expected behaviour) | ✅ | 5 findings + 10 risks/observations |
+| 3.2 | Reproduce | Reproduction steps confirmed at least twice | Evidence saved | ✅ | Finding 1 re-checked with 2 fresh calls |
+| 3.3 | Write up to 5 findings | Title, door, steps, expected vs actual, evidence, severity, priority, and a one-line defence of each rating | Up to 5; or risks and observations if no real bug | ✅ | Each finding links its evidence and the requirement or standard it breaks |
+| 3.4 | Evidence index | `evidence/README.md`: every file in capture order with UTC and Israel time, door, scenario and context | Index exists | ✅ | Requested in review |
 
 ---
 
@@ -219,6 +220,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 | Date | Change |
 |---|---|
 | 2026-11-03 | Plan created. Phase 0 partly done (key stored, repo connected). |
+| 2026-11-03 | Phase 3 done: `FINDINGS.md` (5 findings, 10 risks) and `evidence/README.md` index; PR opened. |
 | 2026-11-03 | Phase 2 done: `TEST_PLAN.md` with 43 executed scenarios (functional, UI, accessibility, multi-language/RTL) and evidence; PR opened. |
 | 2026-11-03 | Phase 1 done: `ARCHITECTURE.md` written on branch `phase-1-architecture`, PR opened for review. |
 | 2026-11-03 | Architecture moved to Phase 1 (before the test plan). Presentation defined as a .pptx with deep-dive links. Git author set. |
