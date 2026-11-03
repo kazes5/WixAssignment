@@ -12,10 +12,12 @@ export const PREMIUM_TYPES = ['UNKNOWN_PREMIUM_TYPE', 'FIRST_YEAR_ONLY', 'FIRST_
 // Punycode labels (xn--...) match too. Used to sanity-check suggestions, not to validate DNS.
 export const HOSTNAME_RE = /^(?!-)[a-z0-9-]{1,63}(?<!-)(\.[a-z0-9-]{2,63})+$/;
 
-// A fresh, unique name that nobody has registered, e.g. qa-wix-1793712345678.com.
-// Date.now() plus a random suffix keeps names unique across parallel workers and runs.
+// A fresh name that nobody has registered, e.g. qa-wix-1793701584.com (Unix time in seconds).
+// Kept short on purpose: from ~23 characters the storefront truncates the name in the main card
+// ("qa-wix-17...1584123456.com"), which would break text assertions. Two tests in the same second
+// get the same name, which is harmless: we only read availability, never register anything.
 export function uniqueFreeName(tld = 'com'): string {
-  return `qa-wix-${Date.now()}${Math.floor(Math.random() * 1000)}.${tld}`;
+  return `qa-wix-${Math.floor(Date.now() / 1000)}.${tld}`;
 }
 
 // Auth headers read from .env only. The values are never logged or attached to reports.

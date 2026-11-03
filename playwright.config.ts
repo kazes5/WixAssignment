@@ -12,8 +12,9 @@ export default defineConfig({
   expect: { timeout: 20_000 },
   // One retry absorbs a rare network hiccup; a real failure still fails twice and is reported.
   retries: 1,
-  // Few workers on purpose: we are guests on wix.com and the API budget is small.
-  workers: 2,
+  // One worker on purpose: we are guests on wix.com. With more parallel page loads during
+  // development, wix.com's price services answered HTTP 429 (rate limited) and the page showed no prices.
+  workers: 1,
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
 
   projects: [
