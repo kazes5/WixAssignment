@@ -24,7 +24,7 @@ finished and committed before the later phases start.
 | 0 | Setup | Manager | Prerequisite | ✅ Done |
 | 1 | Architecture | System Architect | Prerequisite for the MVP | ✅ Done (PR #1 merged) |
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ✅ Done (PR #2 merged) |
-| 3 | Findings | Senior QA Engineer | No | 🟦 Awaiting review (PR from `phase-3-findings`) |
+| 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
 | 4 | Automation | Automation Engineer | No | ⬜ |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ⬜ |
 | 6 | Presentation | Designer | No | ⬜ |
@@ -171,6 +171,7 @@ Owner: **Senior QA Engineer** (findings come from manual exploration). Output: `
 | 3.2 | Reproduce | Reproduction steps confirmed at least twice | Evidence saved | ✅ | Finding 1 re-checked with 2 fresh calls |
 | 3.3 | Write up to 5 findings | Title, door, steps, expected vs actual, evidence, severity, priority, and a one-line defence of each rating | Up to 5; or risks and observations if no real bug | ✅ | Each finding links its evidence and the requirement or standard it breaks |
 | 3.4 | Evidence index | `evidence/README.md`: every file in capture order with UTC and Israel time, door, scenario and context | Index exists | ✅ | Requested in review |
+| 3.5 | Findings review | Human review | User approves | ✅ | PR #3 merged |
 
 ---
 
