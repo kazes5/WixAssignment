@@ -28,6 +28,7 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "add them to Agents.md, exclude #8 … a ppt with the tests scope, the architecture, test structure and coverage with links to deep dive … do the Architecture first" | Additions appended to `Agents.md` (nothing removed), plan reordered so architecture comes before the test plan, presentation defined as a .pptx. |
 | 2026-11-03 | "mark the progress in the EXECUTION_PLAN.md. create a branch for each stage being executed, create a pull request when done. Start Phase 1" | Branch `phase-1-architecture`. The AI used Claude in Chrome to search on the 3 web doors, captured the network calls (with an in-page request hook to see request and response shapes), and wrote `ARCHITECTURE.md` with a Mermaid diagram. |
 | 2026-11-03 | "merged, start Phase 2, please make sure to include UI,Functionality,accessability,Multi Language\\RTL in the test plan." | Branch `phase-2-test-plan`. API scenarios run with `curl` (evidence saved as JSON without the key); web doors tested in Chrome; German site and language checks with the Playwright browser; `TEST_PLAN.md` with 43 scenarios and results. |
+| 2026-11-03 | "merged, please continue to next stage, please order the evidences so i'll be able to understand the evidence context and time of run. On the Findings, add/link the evidence and the requirement where it is relevant." | Branch `phase-3-findings`. Re-checked Finding 1 with fresh calls, generated `evidence/README.md` (56 files in capture order with times and context), wrote `FINDINGS.md` with severity/priority defences, evidence links and the requirement or standard broken for each. |
 
 ## Where the AI was wrong, and how it was caught
 
@@ -41,6 +42,7 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | The AI's first API helper script crashed on the "no auth headers" case (an empty argument list in bash), so the first missing-key test didn't run. | The script printed an "unbound variable" error. | Fixed the script and re-ran; the result (the API answers without a key) was then confirmed 4 ways. |
 | 2026-11-03 | The AI tried to load the axe accessibility scanner from a CDN into the live Wix page. | Blocked by the environment's permission check (running external code). | Not retried. Replaced with read-only DOM checks; the axe scan moves to Phase 4 via the official `@axe-core/playwright` package. |
 | 2026-11-03 | The WHOIS "connection issue" first appeared on a hand-built deep link, which isn't how users search. | The AI re-ran it through the real input box before calling it a bug. | URL input through the box works (pass); invalid characters fail from both entry points (real bug). |
+| 2026-11-03 | Screenshot copies in `evidence/` all had the copy time, not the capture time, so a time-ordered index built from file dates would have been wrong. | Noticed while building the evidence index. | Capture times taken from the browser tool's original file names (batch start, ±30 s) and labelled as approximate; API times come from the call script and are exact. |
 
 ## What was changed or thrown away
 
