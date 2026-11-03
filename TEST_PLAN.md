@@ -32,7 +32,7 @@
 
 **Main observations (not bugs, but worth raising):** no Hebrew/Arabic version of the domain pages; Name Generator domains follow the short name, not the business; taken famous names produce trademark-like suggestions (`googleassistantapp.com`); slow alternatives for taken names; struck-through price vs renewal price clarity.
 
-**API budget used in this phase:** ~32 calls with the API key, plus normal page browsing. Total so far ~45 of a target under 200.
+**API budget used in this phase:** ~32 calls with the API key, plus normal page browsing. Total so far ~45 of a target under 200 (at the end of Phase 2; the final total, ~119, is in the budget table in [`EXECUTION_PLAN.md`](EXECUTION_PLAN.md)).
 
 **Automation (Phase 4):** 24 Playwright tests cover API-01 to API-11, SF-01, SF-02, SF-04, SF-05, SF-07, UI-01, UI-04, A11Y-04 and X-01 (API vs storefront). Latest full run: 24/24 passed, with API-07 kept as an expected failure for Finding 1. Each automated scenario below says **Automated:** with its test file. Details: [§8](#8-automation-candidates-for-phase-4), [`README.md`](README.md#automation-choices), evidence in [`evidence/automation/`](evidence/automation/README.md).
 
