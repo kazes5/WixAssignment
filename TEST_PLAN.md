@@ -1,6 +1,7 @@
 # Test Plan: Wix Domains "Can I get this name?"
 
 **Owner:** Senior QA Engineer · **Executed:** 2026-11-03 · **Built on:** [`ARCHITECTURE.md`](ARCHITECTURE.md)
+**Evidence:** all files in capture order, with times and context, in [`evidence/README.md`](evidence/README.md) · **Findings:** [`FINDINGS.md`](FINDINGS.md)
 
 ## Results summary
 
