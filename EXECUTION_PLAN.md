@@ -26,8 +26,8 @@ finished and committed before the later phases start.
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ✅ Done (PR #2 merged) |
 | 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
 | 4 | Automation | Automation Engineer | No | 🟦 Awaiting review (branch `phase-4-automation`, not pushed) |
-| 5 | Wrap-up: README and AI log | Manager and human | No | 🟦 Awaiting review (PR from `phase-5-wrap-up`) |
-| 6 | Presentation | Designer | No | ⬜ |
+| 5 | Wrap-up: README and AI log | Manager and human | No | ✅ Done (PR #5 merged) |
+| 6 | Presentation | Designer | No | 🟦 In progress (branch `phase-6-presentation`) |
 
 ## Shared conventions
 
@@ -211,7 +211,7 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 6.1 | Outline | Sections: test scope → architecture → test structure → coverage | User approves the outline | ⬜ | |
+| 6.1 | Outline | Sections: test scope → architecture → test structure → coverage | User approves the outline | 🟦 | Outline drafted, awaiting approval (`presentation/OUTLINE.md`, 15 slides) |
 | 6.2 | PowerPoint deck | `presentation/WixDomains_QA.pptx` | Each section links to the matching repo file (`ARCHITECTURE.md`, `TEST_PLAN.md`, `FINDINGS.md`, tests, `README.md`) for a deep dive; real results only | ⬜ | |
 | 6.3 | Review | User review | Approved | ⬜ | |
 
