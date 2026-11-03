@@ -35,6 +35,8 @@ Non-AI tools: `gh` CLI (GitHub), `curl` (one API connectivity check), git.
 | 2026-11-03 | "merged, please continue to Phase 6" | Branch `phase-6-presentation`. Designer agent wrote `presentation/OUTLINE.md` (15 slides) and listed numbers that disagreed across files; the Manager fixed the stale ones in `EXECUTION_PLAN.md`. |
 | 2026-11-03 | "Please change the font and colors to resemble Wix.com, keep the text simple and eazy to understand." | Outline restyled (black/white, Wix blue `#116DFF`, open-source Wix Madefor fonts, no logo, "not an official Wix document" footer) and simplified; deck built with the pptx skill, rendered and checked slide by slide. |
 | 2026-11-03 | "I would like to add a Word document of one pager that includes the description of the tested cases (manual\\Automatic), major bugs found and covarage" | Manager added a Technical Writer agent: `presentation/WixDomains_QA_OnePager.docx`, one A4 page in the same style, every number checked against its source file. |
+| 2026-11-03 | "Please modify the PPT to include the following Slides: Tested Feature and it's importance, Architecture of each door, Manual tests structure and coverage, Automatic tests structure and coverage, Findings highlight (major Issues found), Requirements summary and coverage" | Designer restructured the deck into 16 slides around these 6 topics (one slide per door, a requirements traceability table with one honest ⚠️ for the self-caused 429); Manager checked the renders and opened them for review. |
+| 2026-11-03 | "I am missing the Bug summary slide" | The 5-bug table already existed (slide 13); after one clarifying question Roy chose to rename it "Bug summary: five findings by customer impact". |
 
 ## Where the AI was wrong, and how it was caught
 
