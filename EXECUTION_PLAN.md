@@ -22,7 +22,7 @@ finished and committed before the later phases start.
 | Phase | Name | Owner | MVP? | Status |
 |---|---|---|---|---|
 | 0 | Setup | Manager | Prerequisite | ✅ Done |
-| 1 | Architecture | System Architect | Prerequisite for the MVP | ⬜ |
+| 1 | Architecture | System Architect | Prerequisite for the MVP | 🟦 Awaiting review (PR from `phase-1-architecture`) |
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ⬜ |
 | 3 | Findings | Senior QA Engineer | No | ⬜ |
 | 4 | Automation | Automation Engineer | No | ⬜ |
@@ -40,6 +40,7 @@ finished and committed before the later phases start.
 - **Evidence:** saved under `evidence/<scenario-id>/` (screenshots, API responses as `.json`, HAR excerpts). Referenced by path in `TEST_PLAN.md`. Never include the API key in saved evidence.
 - **Unique names:** "available" checks use `qa-wix-<timestamp>.com` so results don't depend on a fixed name staying free.
 - **Commits:** at the end of every piece, using the message suggested in the piece. Never squash.
+- **Branches and PRs:** each phase runs on its own branch (`phase-<n>-<name>`) and ends with a pull request to `main`.
 
 ## API call budget
 
@@ -48,11 +49,11 @@ Limit: a few hundred in total. Target: **under 200**.
 | Phase | Planned | Used | Notes |
 |---|---|---|---|
 | 0 (connectivity checks) | 3 | 3 | 1 availability call with the key, 2 Wix plugin calls |
-| 1 (architecture recon) | ~5 | | API docs check only; web doors use their own calls |
+| 1 (architecture recon) | ~5 | ~10 | No API-key calls. Normal page browsing on the 3 doors, plus ~10 extra in-page requests to capture response shapes (2 availability, 2 suggestions, 2 user-domains, prices, TLD list, WHOIS) |
 | 2 (manual execution) | ~40 | | |
 | 3 (findings reproduction) | ~20 | | |
 | 4 (automation development and runs) | ~100 | | ~10 calls per full run, ~10 runs |
-| **Total** | **~170** | **3** | |
+| **Total** | **~170** | **~13** | |
 
 ---
 
@@ -79,14 +80,14 @@ screen, location-dependent behaviour, and stable selectors.
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 1.1 | Storefront network analysis | Section: what it's made of, network calls, what each call drives on screen | Calls listed with method, endpoint and purpose | ⬜ | |
-| 1.2 | Name Generator network analysis | Same | Same | ⬜ | |
-| 1.3 | WHOIS network analysis | Same | Same | ⬜ | |
-| 1.4 | Public API | Section: endpoints, auth, request and response shape | Matches the docs | ⬜ | |
-| 1.5 | How the doors relate | Section: shared services, differences, relation to the public API | Clear comparison | ⬜ | |
-| 1.6 | Diagram | Mermaid diagram: doors → services → shared backends | Renders on GitHub | ⬜ | |
-| 1.7 | Testing notes | Section: what each call means for testing (risky areas, what to assert on, selectors) | Section exists | ⬜ | Commit: `docs: architecture` |
-| 1.8 | Architecture review | Human review | User approves | ⬜ | |
+| 1.1 | Storefront network analysis | Section: what it's made of, network calls, what each call drives on screen | Calls listed with method, endpoint and purpose | ✅ | Storefront calls the same `domain-search/v2` endpoints as the public API |
+| 1.2 | Name Generator network analysis | Same | Same | ✅ | |
+| 1.3 | WHOIS network analysis | Same | Same | ✅ | |
+| 1.4 | Public API | Section: endpoints, auth, request and response shape | Matches the docs | ✅ | |
+| 1.5 | How the doors relate | Section: shared services, differences, relation to the public API | Clear comparison | ✅ | |
+| 1.6 | Diagram | Mermaid diagram: doors → services → shared backends | Renders on GitHub | ✅ | |
+| 1.7 | Testing notes | Section: what each call means for testing (risky areas, what to assert on, selectors) | Section exists | ✅ | 6 risks and observations handed to Phase 2 |
+| 1.8 | Architecture review | Human review | User approves | 🟦 | PR open for review |
 
 ---
 
@@ -216,4 +217,5 @@ Owner: **Designer**. Audience: the hiring manager and the Wix QA guild.
 | Date | Change |
 |---|---|
 | 2026-11-03 | Plan created. Phase 0 partly done (key stored, repo connected). |
+| 2026-11-03 | Phase 1 done: `ARCHITECTURE.md` written on branch `phase-1-architecture`, PR opened for review. |
 | 2026-11-03 | Architecture moved to Phase 1 (before the test plan). Presentation defined as a .pptx with deep-dive links. Git author set. |
