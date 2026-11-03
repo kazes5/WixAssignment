@@ -25,7 +25,7 @@ finished and committed before the later phases start.
 | 1 | Architecture | System Architect | Prerequisite for the MVP | ✅ Done (PR #1 merged) |
 | 2 | Test plan and manual execution | Senior QA Engineer | **Yes (MVP)** | ✅ Done (PR #2 merged) |
 | 3 | Findings | Senior QA Engineer | No | ✅ Done (PR #3 merged) |
-| 4 | Automation | Automation Engineer | No | ⬜ |
+| 4 | Automation | Automation Engineer | No | 🟦 In progress (branch `phase-4-automation`) |
 | 5 | Wrap-up: README and AI log | Manager and human | No | ⬜ |
 | 6 | Presentation | Designer | No | ⬜ |
 
@@ -181,7 +181,7 @@ Owner: **Automation Engineer**. Tool: Playwright (TypeScript).
 
 | # | Piece | Output | Done when | Status | Note |
 |---|---|---|---|---|---|
-| 4.1 | Project skeleton | `package.json`, `playwright.config.ts`, `.env` loading with `dotenv` | `npm test` runs an empty suite | ⬜ | Commit: `chore: playwright setup` |
+| 4.1 | Project skeleton | `package.json`, `playwright.config.ts`, `.env` loading with `dotenv` | `npm test` runs an empty suite | ✅ | Playwright 1.64 + dotenv; 3 projects (api, web, cross); traces off where the API key is sent |
 | 4.2 | API tests | `tests/api/*.spec.ts` for API-01 to API-09 | Pass, or fail only on real findings | ⬜ | |
 | 4.3 | Web door tests | `tests/web/storefront.spec.ts` for SF-01 and SF-02 (plus SF-04 if stable) | Pass reliably 3 runs in a row | ⬜ | |
 | 4.4 | Cross-door test | X-01: API vs storefront for one free and one taken name | Passes | ⬜ | |
